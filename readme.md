@@ -16,5 +16,3 @@ The game is set in an infinate, dark ocean with procedurally generated islands s
 The player has a top down view of a boat, the ocean is very dark, and a light is used to see the islands. Many of these aspects are used in Sunless Sea.
 
 Islands are randomly spread out and generated. This is similar to the island shuffling that happens between playthroughs of Sunless Sea.
-
-
