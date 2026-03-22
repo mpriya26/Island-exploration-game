@@ -1,25 +1,11 @@
-[gd_scene format=4 uid="uid://bxf3egob0offw"]
+[gd_scene format=3 uid="uid://bxf3egob0offw"]
 
 [ext_resource type="Script" uid="uid://dvm8pf8ptagd5" path="res://Scripts/Islands/MeshGeneration.cs" id="1_0iamf"]
-[ext_resource type="Texture2D" uid="uid://dv2kpkq8bpvay" path="res://icon.svg" id="1_hdtfb"]
 
 [sub_resource type="Environment" id="Environment_0iamf"]
 background_mode = 3
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_hdtfb"]
-_surfaces = [{
-"aabb": AABB(0, 0, 0, 1, 1, 1),
-"format": 34359742465,
-"index_count": 36,
-"index_data": PackedByteArray("AAABAAIAAAACAAMAAwACAAcAAgAGAAcAAgABAAYAAQAFAAYAAQAEAAUAAQAAAAQAAAADAAcABAAAAAcABgAFAAQABAAHAAYA"),
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 8,
-"vertex_data": PackedByteArray("AAAAAAAAgD8AAAAAAACAPwAAgD8AAAAAAACAPwAAgD8AAIA/AAAAAAAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAAAAAAAAAAACAPwAAAAAAAIA/AAAAAAAAAAAAAIA/")
-}]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0iamf"]
-albedo_texture = ExtResource("1_hdtfb")
+[sub_resource type="ArrayMesh" id="ArrayMesh_0iamf"]
 
 [node name="Island" type="Node3D" unique_id=450481716]
 
@@ -30,6 +16,5 @@ transform = Transform3D(0.3840232, 0.6192761, -0.68485284, -0.3147527, 0.7851003
 environment = SubResource("Environment_0iamf")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1903477699]
-mesh = SubResource("ArrayMesh_hdtfb")
-surface_material_override/0 = SubResource("StandardMaterial3D_0iamf")
+mesh = SubResource("ArrayMesh_0iamf")
 script = ExtResource("1_0iamf")

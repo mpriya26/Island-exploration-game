@@ -1,4 +1,5 @@
 
+using System.Collections.Generic;
 using System.Linq;
 using Godot;
 
@@ -14,6 +15,12 @@ public partial class MeshGeneration : MeshInstance3D
 	[Export]
 	public bool update = false;
 
+	[Export]
+	public int width = 1;
+
+	[Export]
+	public int height = 1;
+
 
 
 	// Called when the node enters the scene tree for the first time.
@@ -24,35 +31,43 @@ public partial class MeshGeneration : MeshInstance3D
 
 	public void GenMesh()
 	{
-		var a_mesh = new ArrayMesh();
-		var vertices = new Vector3[] {
-			new(0, 1, 0),
-			new(1, 1, 0), 
-			new(1, 1, 1),
-			new(0, 1, 1),
+		var aMesh = new ArrayMesh();
 
-			new(0, 0, 0),
-			new(1, 0, 0), 
-			new(1, 0, 1),
-			new(0, 0, 1),
-		};
+		var indices = new List<int>();
 
-		var indices = new int[]
-		{
-			0, 1, 2, 
-			0, 2, 3,
-			3, 2, 7,
-			2, 6, 7, 
-			2, 1, 6, 
-			1, 5, 6, 
-			1, 4, 5, 
-			1, 0, 4, 
-			0, 3, 7, 
-			4, 0, 7, 
-			6, 5, 4, 
-			4, 7, 6
-		};
+		var vertices = new List<Vector3>();
+			// new(0, 1, 0),
+			// new(1, 1, 0), 
+			// new(1, 1, 1),
+			// new(0, 1, 1),
 
+			// new(0, 0, 0),
+			// new(1, 0, 0),  
+			// new(1, 0, 1),
+			// new(0, 0, 1),
+
+			for(int x = 0; x < width; x++)
+			{
+				for(int y = 0; y < height; y++)
+				{
+					vertices.Add(new Vector3(x, y, 0));
+
+					if(y < width-1 && x < height-1)
+					{
+					
+						indices.Add(y*width+x);
+						indices.Add((y+1)*width+x);
+						indices.Add(y*width+x+1);
+
+						indices.Add((y+1)*width+x+1);
+						indices.Add(y*width+x+1);
+						indices.Add((y+1)*width+x);
+					}
+				}
+			}
+	
+
+		
 		var uvs = new Vector2[]
 		{
 			new(0, 0), 
@@ -70,9 +85,12 @@ public partial class MeshGeneration : MeshInstance3D
 		array.Resize((int)Mesh.ArrayType.Max);
 		array[(int)Mesh.ArrayType.Vertex] = vertices.ToArray();
 		array[(int)Mesh.ArrayType.Index] = indices.ToArray();
-		array[(int)Mesh.ArrayType.TexUV] = uvs.ToArray();
-		a_mesh.AddSurfaceFromArrays(Mesh.PrimitiveType.Triangles, array);
-		Mesh = a_mesh;
+		//array[(int)Mesh.ArrayType.TexUV] = uvs.ToArray();
+		aMesh.AddSurfaceFromArrays(Mesh.PrimitiveType.Triangles, array);
+		Mesh = aMesh;
+
+		
+
 
 
 
