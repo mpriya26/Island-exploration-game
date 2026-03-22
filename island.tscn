@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://bxf3egob0offw"]
 
 [ext_resource type="Script" uid="uid://dvm8pf8ptagd5" path="res://Scripts/Islands/MeshGeneration.cs" id="1_0iamf"]
+[ext_resource type="Texture2D" uid="uid://dv2kpkq8bpvay" path="res://icon.svg" id="1_hdtfb"]
 
 [sub_resource type="Environment" id="Environment_0iamf"]
 background_mode = 3
@@ -18,11 +19,12 @@ _surfaces = [{
 }]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0iamf"]
+albedo_texture = ExtResource("1_hdtfb")
 
 [node name="Island" type="Node3D" unique_id=450481716]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1531708439]
-transform = Transform3D(0.99570376, 0, 0.092596486, 0, 1, 0, -0.092596486, 0, 0.99570376, -2.146388, 1.7120557, 0.3877424)
+transform = Transform3D(0.3840232, 0.6192761, -0.68485284, -0.3147527, 0.7851003, 0.5334307, 0.868019, 0.010709496, 0.49641553, -3.1061988, 1.1881216, 0.58593607)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1791673138]
 environment = SubResource("Environment_0iamf")

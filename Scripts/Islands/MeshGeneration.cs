@@ -53,10 +53,24 @@ public partial class MeshGeneration : MeshInstance3D
 			4, 7, 6
 		};
 
+		var uvs = new Vector2[]
+		{
+			new(0, 0), 
+			new(1, 0), 
+			new(1, 1), 
+			new(0, 1), 
+
+			new(0, 0), 
+			new(1, 0), 
+			new(1, 1), 
+			new(0, 1), 
+		};
+
 		var array = new Godot.Collections.Array();
 		array.Resize((int)Mesh.ArrayType.Max);
 		array[(int)Mesh.ArrayType.Vertex] = vertices.ToArray();
 		array[(int)Mesh.ArrayType.Index] = indices.ToArray();
+		array[(int)Mesh.ArrayType.TexUV] = uvs.ToArray();
 		a_mesh.AddSurfaceFromArrays(Mesh.PrimitiveType.Triangles, array);
 		Mesh = a_mesh;
 
