@@ -24,8 +24,8 @@ public partial class Boat : Node3D
     {
         var controls = _boatController.PollCurrentControl();
 
-        var forward = _boatRigidBody.Transform.Basis.Column0;
+        var forward = -_boatRigidBody.Transform.Basis.Column2;
 
-        _boatRigidBody.ApplyForce(_propThrust * forward * controls.Control.X);
+        _boatRigidBody.ApplyForce(_propThrust * forward * controls.Throttle);
     }
 }

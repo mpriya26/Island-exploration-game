@@ -1,12 +1,16 @@
 [gd_scene format=3 uid="uid://dyu7crpa0rbmw"]
 
-[node name="BoatUi" type="Control" unique_id=1344324806]
+[ext_resource type="Script" uid="uid://dxmj5va8g3do" path="res://Scripts/Boat/BoatUi.cs" id="1_sltv7"]
+
+[node name="BoatUi" type="Control" unique_id=1344324806 node_paths=PackedStringArray("_throttleSlider")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_sltv7")
+_throttleSlider = NodePath("Throttle")
 
 [node name="Throttle" type="VSlider" parent="." unique_id=1219970228]
 layout_mode = 1
@@ -19,3 +23,8 @@ offset_left = -96.0
 offset_top = -274.0
 grow_horizontal = 0
 grow_vertical = 0
+min_value = -2.0
+max_value = 5.0
+rounded = true
+tick_count = 8
+ticks_on_borders = true

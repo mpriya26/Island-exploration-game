@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://bhbpvdmqpu2tq"]
+
+[ext_resource type="PackedScene" uid="uid://cqth8df1e4en6" path="res://boat.tscn" id="1_qqgfp"]
+[ext_resource type="PackedScene" uid="uid://dyu7crpa0rbmw" path="res://boat_ui.tscn" id="2_fv68v"]
+
+[sub_resource type="Gradient" id="Gradient_kjqlq"]
+interpolation_mode = 2
+interpolation_color_space = 2
+offsets = PackedFloat32Array(0.08959538, 0.54046243, 1)
+colors = PackedColorArray(0.028816951, 0.24377581, 0.23223972, 1, 0.1275, 0.51, 0.38250002, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_tiovm"]
+noise_type = 2
+seed = 2
+frequency = 0.0136
+offset = Vector3(389.83, -490.23, 333.33)
+fractal_type = 0
+fractal_octaves = 4
+cellular_distance_function = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_j38dg"]
+width = 1000
+height = 1000
+noise = SubResource("FastNoiseLite_tiovm")
+color_ramp = SubResource("Gradient_kjqlq")
+in_3d_space = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nb2vx"]
+albedo_color = Color(0.07504917, 0.28615472, 0.32935598, 1)
+albedo_texture = SubResource("NoiseTexture2D_j38dg")
+metallic = 0.44
+metallic_specular = 0.0
+grow_amount = 4.552
+proximity_fade_enabled = true
+distance_fade_min_distance = 2.05
+distance_fade_max_distance = 20.3
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_bwgqs"]
+lightmap_size_hint = Vector2i(5002, 5002)
+material = SubResource("StandardMaterial3D_nb2vx")
+size = Vector2(1000, 1000)
+
+[node name="BoatTestOcean" type="Node3D" unique_id=551639879]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1669740199]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.062542, 0.6085777, 0)
+mesh = SubResource("PlaneMesh_bwgqs")
+
+[node name="Boat" parent="." unique_id=14289713 node_paths=PackedStringArray("_boatController") instance=ExtResource("1_qqgfp")]
+_boatController = NodePath("../BoatUi")
+
+[node name="BoatUi" parent="." unique_id=1344324806 instance=ExtResource("2_fv68v")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=605869228]
+transform = Transform3D(0.52882355, 0.6220852, -0.5773696, 0, 0.6802733, 0.73295856, 0.84873176, -0.38760576, 0.35974455, 0, 0, 0)

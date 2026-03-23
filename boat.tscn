@@ -13,10 +13,13 @@ height = 15.0
 [sub_resource type="BoxMesh" id="BoxMesh_luxk2"]
 size = Vector3(6, 1, 15)
 
-[node name="Boat" type="Node3D" unique_id=14289713]
+[node name="Boat" type="Node3D" unique_id=14289713 node_paths=PackedStringArray("_boatRigidBody")]
 script = ExtResource("1_annr2")
+_boatRigidBody = NodePath("RigidBody3D")
+_propThrust = 1000.0
 
 [node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=1879680047]
+mass = 1000.0
 physics_material_override = SubResource("PhysicsMaterial_luxk2")
 gravity_scale = 0.0
 
@@ -27,3 +30,7 @@ debug_color = Color(0.822727, 0.3425795, 0.5464311, 0.41960785)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D" unique_id=1374517296]
 mesh = SubResource("BoxMesh_luxk2")
+
+[node name="Camera3D" type="Camera3D" parent="RigidBody3D" unique_id=568801384]
+transform = Transform3D(1, 0, 0, 0, 0.1512436, 0.98849654, 0, -0.98849654, 0.1512436, 0, 236.52809, 29.909782)
+fov = 50.0
