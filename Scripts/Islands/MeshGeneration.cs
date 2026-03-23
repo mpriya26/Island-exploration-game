@@ -16,10 +16,11 @@ public partial class MeshGeneration : MeshInstance3D
 	public bool update = false;
 
 	[Export]
-	public int width = 1;
+	public int resolution = 1;
+
 
 	[Export]
-	public int height = 1;
+	public float scale = 1;
 
 
 
@@ -46,22 +47,22 @@ public partial class MeshGeneration : MeshInstance3D
 			// new(1, 0, 1),
 			// new(0, 0, 1),
 
-			for(int x = 0; x < width; x++)
+			for(int z = 0; z <= resolution; z++)
 			{
-				for(int y = 0; y < height; y++)
+				for(int x = 0; x <= resolution; x++)
 				{
-					vertices.Add(new Vector3(x, y, 0));
+					vertices.Add(new Vector3(x, 0, z) * scale/resolution);
 
-					if(y < width-1 && x < height-1)
+					if(z < resolution && x < resolution)
 					{
 					
-						indices.Add(y*width+x);
-						indices.Add((y+1)*width+x);
-						indices.Add(y*width+x+1);
+						indices.Add((z*(resolution+1))+x);
+						indices.Add((z*(resolution+1))+x+1);
+						indices.Add(((z+1)*(resolution+1))+x);
 
-						indices.Add((y+1)*width+x+1);
-						indices.Add(y*width+x+1);
-						indices.Add((y+1)*width+x);
+						indices.Add(((z+1)*(resolution+1))+x+1);
+						indices.Add(((z+1)*(resolution+1))+x);
+						indices.Add((z*(resolution+1))+x+1);
 					}
 				}
 			}
