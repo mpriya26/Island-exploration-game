@@ -7,21 +7,25 @@ rough = true
 bounce = 0.19
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_annr2"]
-radius = 3.0
-height = 15.0
+radius = 10.0
+height = 140.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_luxk2"]
-size = Vector3(6, 1, 15)
+size = Vector3(20, 1, 140)
 
 [node name="Boat" type="Node3D" unique_id=14289713 node_paths=PackedStringArray("_boatRigidBody")]
 script = ExtResource("1_annr2")
 _boatRigidBody = NodePath("RigidBody3D")
 _propThrust = 1000.0
+_turnSpeed = 10.0
 
 [node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=1879680047]
+axis_lock_linear_y = true
 mass = 1000.0
 physics_material_override = SubResource("PhysicsMaterial_luxk2")
 gravity_scale = 0.0
+linear_damp = 0.05
+angular_damp = 0.3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" unique_id=1866762527]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
@@ -32,5 +36,5 @@ debug_color = Color(0.822727, 0.3425795, 0.5464311, 0.41960785)
 mesh = SubResource("BoxMesh_luxk2")
 
 [node name="Camera3D" type="Camera3D" parent="RigidBody3D" unique_id=568801384]
-transform = Transform3D(1, 0, 0, 0, 0.1512436, 0.98849654, 0, -0.98849654, 0.1512436, 0, 236.52809, 29.909782)
+transform = Transform3D(1, 0, 0, 0, 0.20042822, 0.97970843, 0, -0.97970843, 0.20042822, 0, 277.33398, 21.142982)
 fov = 50.0

@@ -27,5 +27,6 @@ public partial class Boat : Node3D
         var forward = -_boatRigidBody.Transform.Basis.Column2;
 
         _boatRigidBody.ApplyForce(_propThrust * forward * controls.Throttle);
+        _boatRigidBody.ApplyTorque(_turnSpeed * Vector3.Up * _boatRigidBody.LinearVelocity.LengthSquared() * -controls.Steering);
     }
 }

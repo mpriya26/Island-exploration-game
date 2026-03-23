@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://dyu7crpa0rbmw"]
 
 [ext_resource type="Script" uid="uid://dxmj5va8g3do" path="res://Scripts/Boat/BoatUi.cs" id="1_sltv7"]
+[ext_resource type="Texture2D" uid="uid://1l8c8n3p3wnn" path="res://textures/wheel.svg" id="2_jaga5"]
+[ext_resource type="Script" uid="uid://cad53eci634vn" path="res://Scripts/Boat/Wheel.cs" id="3_l57aq"]
 
-[node name="BoatUi" type="Control" unique_id=1344324806 node_paths=PackedStringArray("_throttleSlider")]
+[node name="BoatUi" type="Control" unique_id=1344324806 node_paths=PackedStringArray("_throttleSlider", "_wheel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,6 +13,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_sltv7")
 _throttleSlider = NodePath("Throttle")
+_wheel = NodePath("Wheel")
 
 [node name="Throttle" type="VSlider" parent="." unique_id=1219970228]
 layout_mode = 1
@@ -28,3 +31,25 @@ max_value = 5.0
 rounded = true
 tick_count = 8
 ticks_on_borders = true
+
+[node name="Wheel" type="TextureRect" parent="." unique_id=2014340382]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -527.0
+offset_top = -386.0
+offset_right = -15.0
+offset_bottom = 126.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 0
+texture = ExtResource("2_jaga5")
+expand_mode = 4
+script = ExtResource("3_l57aq")
+_autoCenterRevolutions = 0.031
+_autoCenterSpeed = 0.05
+_maxRevolutions = 1.5

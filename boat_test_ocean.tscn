@@ -12,15 +12,15 @@ colors = PackedColorArray(0.028816951, 0.24377581, 0.23223972, 1, 0.1275, 0.51, 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_tiovm"]
 noise_type = 2
 seed = 2
-frequency = 0.0136
+frequency = 0.2138
 offset = Vector3(389.83, -490.23, 333.33)
 fractal_type = 0
 fractal_octaves = 4
 cellular_distance_function = 1
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_j38dg"]
-width = 1000
-height = 1000
+width = 2048
+height = 2048
 noise = SubResource("FastNoiseLite_tiovm")
 color_ramp = SubResource("Gradient_kjqlq")
 in_3d_space = true
@@ -38,7 +38,7 @@ distance_fade_max_distance = 20.3
 [sub_resource type="PlaneMesh" id="PlaneMesh_bwgqs"]
 lightmap_size_hint = Vector2i(5002, 5002)
 material = SubResource("StandardMaterial3D_nb2vx")
-size = Vector2(1000, 1000)
+size = Vector2(10000, 10000)
 
 [node name="BoatTestOcean" type="Node3D" unique_id=551639879]
 
