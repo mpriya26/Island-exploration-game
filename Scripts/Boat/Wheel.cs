@@ -23,10 +23,21 @@ public partial class Wheel : Control
     private float _autoCenterSpeed = 0.1f;
 
     [Export]
+    private float _autoCenterVelocityLimit = 0.1f;
+
+    [Export]
     private float _fullRevolutionAngleLimit = 0.9f;
 
     [Export]
     private float _maxRevolutions = 2.0f;
+
+    [Export]
+    private float _drag = 0.01f;
+
+    [Export]
+    private float _minVelocity = 0.01f;
+
+    private float _velocity = 0.0f;
 
 
 
@@ -58,23 +69,39 @@ public partial class Wheel : Control
             // Handle full wheel revolution
             if (angle < _fullRevolutionAngleLimit * -Mathf.Pi && _prevAngle > _fullRevolutionAngleLimit * Mathf.Pi)
             {
+                _prevAngle += Mathf.Tau;
                 _startAngle += Mathf.Tau;
             }
             else if (angle > _fullRevolutionAngleLimit * Mathf.Pi && _prevAngle < _fullRevolutionAngleLimit * -Mathf.Pi)
             {
+                _prevAngle -= Mathf.Tau;
                 _startAngle -= Mathf.Tau;
             }
+
+            _velocity = Mathf.Lerp(_velocity, (angle - _prevAngle) / (float)delta, 0.2f);
 
             _prevAngle = m.AngleTo(p);
             CurrentAngle = Mathf.Clamp(_startAngle + _prevAngle, -_maxRevolutions * Mathf.Tau, _maxRevolutions * Mathf.Tau);
         }
-        else if (Mathf.Abs(CurrentAngle) <= _autoCenterRevolutions * Mathf.Tau)
+        else if (Mathf.Abs(_velocity) < _autoCenterVelocityLimit * Mathf.Tau
+                && Mathf.Abs(CurrentAngle) <= _autoCenterRevolutions * Mathf.Tau)
         {
+            _velocity = 0.0f;
             CurrentAngle = Mathf.Lerp(CurrentAngle, 0.0f, _autoCenterSpeed);
             if (Mathf.Abs(CurrentAngle) < 0.001f)
             {
                 CurrentAngle = 0.0f;
             }
+        }
+        else
+        {
+            _velocity = Mathf.Lerp(_velocity, 0.0f, _drag);
+            CurrentAngle += _velocity * (float)delta;
+        }
+
+        if (Mathf.Abs(CurrentAngle) >= _maxRevolutions * Mathf.Tau || Mathf.Abs(_velocity) <= _minVelocity * Mathf.Tau)
+        {
+            _velocity = 0.0f;
         }
 
         Rotation = CurrentAngle;
