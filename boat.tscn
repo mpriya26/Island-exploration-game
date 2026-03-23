@@ -1,17 +1,29 @@
 [gd_scene format=3 uid="uid://cqth8df1e4en6"]
 
+[ext_resource type="Script" uid="uid://t851ov3sggkv" path="res://Scripts/Boat/Boat.cs" id="1_annr2"]
+
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_luxk2"]
 rough = true
 bounce = 0.19
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_annr2"]
+radius = 3.0
+height = 15.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_luxk2"]
+size = Vector3(6, 1, 15)
 
 [node name="Boat" type="Node3D" unique_id=14289713]
+script = ExtResource("1_annr2")
 
 [node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=1879680047]
 physics_material_override = SubResource("PhysicsMaterial_luxk2")
 gravity_scale = 0.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" unique_id=1866762527]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_annr2")
 debug_color = Color(0.822727, 0.3425795, 0.5464311, 0.41960785)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D" unique_id=1374517296]
+mesh = SubResource("BoxMesh_luxk2")
