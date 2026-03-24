@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
+using RandomIslandExploration.Scripts.Islands.Noise;
 
 
 
@@ -22,6 +23,9 @@ public partial class MeshGeneration : MeshInstance3D
 
 	[Export]
 	public float scale = 1;
+
+	[Export]
+	public NoiseSettings noiseSettings;
 
 
 
@@ -53,7 +57,7 @@ public partial class MeshGeneration : MeshInstance3D
 				for(int x = 0; x <= resolution; x++)
 				{
 					var point = new Vector2(x, z)/resolution;
-					var height = PointHeight(point);
+					var height = noiseSettings.PointHeight(point);
 
 					vertices.Add(new Vector3(x, height, z) * scale/resolution);
 
@@ -111,10 +115,6 @@ public partial class MeshGeneration : MeshInstance3D
 		}
 	}
 
-	public float PointHeight(Vector2 point)
-	{
-		return point.Y*2.0f;
-	}
 }
 
 
