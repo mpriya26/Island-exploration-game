@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
@@ -51,7 +52,10 @@ public partial class MeshGeneration : MeshInstance3D
 			{
 				for(int x = 0; x <= resolution; x++)
 				{
-					vertices.Add(new Vector3(x, 0, z) * scale/resolution);
+					var point = new Vector2(x, z)/resolution;
+					var height = PointHeight(point);
+
+					vertices.Add(new Vector3(x, height, z) * scale/resolution);
 
 					if(z < resolution && x < resolution)
 					{
@@ -106,4 +110,11 @@ public partial class MeshGeneration : MeshInstance3D
 			update = false;
 		}
 	}
+
+	public float PointHeight(Vector2 point)
+	{
+		return point.Y*2.0f;
+	}
 }
+
+
