@@ -18,7 +18,7 @@ public partial class MeshGeneration : MeshInstance3D
 	public bool update = false;
 
 	[Export]
-	public int resolution = 1;
+	public int resolution = 100;
 
 
 	[Export]
@@ -29,76 +29,61 @@ public partial class MeshGeneration : MeshInstance3D
 
 
 
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-		
-	}
-
-	public void GenMesh()
+	public ArrayMesh GenMesh()
 	{
 		var aMesh = new ArrayMesh();
+
+		var uvs = new List<Vector2>();
 
 		var indices = new List<int>();
 
 		var vertices = new List<Vector3>();
-			// new(0, 1, 0),
-			// new(1, 1, 0), 
-			// new(1, 1, 1),
-			// new(0, 1, 1),
+		var normals = new List<Vector3>();
 
-			// new(0, 0, 0),
-			// new(1, 0, 0),  
-			// new(1, 0, 1),
-			// new(0, 0, 1),
 
-			for(int z = 0; z <= resolution; z++)
+		for (int z = 0; z <= resolution; z++)
+		{
+			for (int x = 0; x <= resolution; x++)
 			{
-				for(int x = 0; x <= resolution; x++)
+				var point = new Vector2(x, z) / resolution;
+				var height = 10.0f * noiseSettings.PointHeight(point);
+
+				vertices.Add(new Vector3(x, height, z) * scale / resolution);
+				uvs.Add(point);
+				normals.Add(Vector3.Up);
+
+				if (z < resolution && x < resolution)
 				{
-					var point = new Vector2(x, z)/resolution;
-					var height = noiseSettings.PointHeight(point);
 
-					vertices.Add(new Vector3(x, height, z) * scale/resolution);
+					indices.Add((z * (resolution + 1)) + x);
+					indices.Add((z * (resolution + 1)) + x + 1);
+					indices.Add(((z + 1) * (resolution + 1)) + x);
 
-					if(z < resolution && x < resolution)
-					{
-					
-						indices.Add((z*(resolution+1))+x);
-						indices.Add((z*(resolution+1))+x+1);
-						indices.Add(((z+1)*(resolution+1))+x);
-
-						indices.Add(((z+1)*(resolution+1))+x+1);
-						indices.Add(((z+1)*(resolution+1))+x);
-						indices.Add((z*(resolution+1))+x+1);
-					}
+					indices.Add(((z + 1) * (resolution + 1)) + x + 1);
+					indices.Add(((z + 1) * (resolution + 1)) + x);
+					indices.Add((z * (resolution + 1)) + x + 1);
 				}
 			}
-	
+		}
 
-		
-		var uvs = new Vector2[]
-		{
-			new(0, 0), 
-			new(1, 0), 
-			new(1, 1), 
-			new(0, 1), 
 
-			new(0, 0), 
-			new(1, 0), 
-			new(1, 1), 
-			new(0, 1), 
-		};
+
+
 
 		var array = new Godot.Collections.Array();
 		array.Resize((int)Mesh.ArrayType.Max);
 		array[(int)Mesh.ArrayType.Vertex] = vertices.ToArray();
 		array[(int)Mesh.ArrayType.Index] = indices.ToArray();
-		//array[(int)Mesh.ArrayType.TexUV] = uvs.ToArray();
-		aMesh.AddSurfaceFromArrays(Mesh.PrimitiveType.Triangles, array);
-		Mesh = aMesh;
+		array[(int)Mesh.ArrayType.Normal] = normals.ToArray();
+		array[(int)Mesh.ArrayType.TexUV] = uvs.ToArray();
+		array[(int)Mesh.ArrayType.TexUV2] = uvs.ToArray();
+		var st = new SurfaceTool();
+		st.CreateFromArrays(array, Mesh.PrimitiveType.Triangles);
+		st.GenerateNormals();
+		st.GenerateTangents();
+		return st.Commit();
 
-		
+
 
 
 
@@ -108,9 +93,9 @@ public partial class MeshGeneration : MeshInstance3D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		if(update)
+		if (update)
 		{
-			GenMesh();
+			Mesh = GenMesh();
 			update = false;
 		}
 	}
