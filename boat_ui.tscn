@@ -3,8 +3,12 @@
 [ext_resource type="Script" uid="uid://dxmj5va8g3do" path="res://Scripts/Boat/BoatUi.cs" id="1_sltv7"]
 [ext_resource type="Texture2D" uid="uid://1l8c8n3p3wnn" path="res://textures/wheel.svg" id="2_jaga5"]
 [ext_resource type="Script" uid="uid://cad53eci634vn" path="res://Scripts/Boat/Wheel.cs" id="3_l57aq"]
+[ext_resource type="Texture2D" uid="uid://b8le5j4birdps" path="res://textures/compass.svg" id="4_ldbsd"]
+[ext_resource type="Script" uid="uid://dfh1s7l0uumpt" path="res://Scripts/Boat/Compass.cs" id="5_ggijh"]
+[ext_resource type="Texture2D" uid="uid://wjrwb6hd25h7" path="res://textures/heading.svg" id="6_ggijh"]
+[ext_resource type="PackedScene" uid="uid://dps34ojv128lv" path="res://map.tscn" id="7_sa8dg"]
 
-[node name="BoatUi" type="Control" unique_id=1344324806 node_paths=PackedStringArray("_throttleSlider", "_wheel")]
+[node name="BoatUi" type="Control" unique_id=1344324806 node_paths=PackedStringArray("_throttleSlider", "_wheel", "_map", "_mapButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,6 +18,8 @@ grow_vertical = 2
 script = ExtResource("1_sltv7")
 _throttleSlider = NodePath("Throttle")
 _wheel = NodePath("Wheel")
+_map = NodePath("Map")
+_mapButton = NodePath("Compass/TextureButton")
 
 [node name="Throttle" type="VSlider" parent="." unique_id=1219970228]
 layout_mode = 1
@@ -55,3 +61,34 @@ _autoCenterVelocityLimit = 0.2
 _maxRevolutions = 3.0
 _drag = 0.02
 _minVelocity = 0.05
+
+[node name="Compass" type="TextureRect" parent="." unique_id=404665202]
+layout_mode = 0
+offset_left = 958.0
+offset_top = 38.0
+offset_right = 1137.0
+offset_bottom = 217.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("4_ldbsd")
+expand_mode = 1
+script = ExtResource("5_ggijh")
+
+[node name="TextureButton" type="TextureButton" parent="Compass" unique_id=991304942]
+layout_mode = 0
+offset_right = 180.0
+offset_bottom = 180.0
+
+[node name="Heading" type="TextureRect" parent="." unique_id=300826751]
+layout_mode = 0
+offset_left = 1019.0
+offset_top = 12.0
+offset_right = 1076.0
+offset_bottom = 69.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("6_ggijh")
+expand_mode = 1
+flip_v = true
+
+[node name="Map" parent="." unique_id=108138653 instance=ExtResource("7_sa8dg")]
+visible = false
+layout_mode = 1

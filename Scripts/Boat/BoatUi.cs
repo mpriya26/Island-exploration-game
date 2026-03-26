@@ -15,6 +15,26 @@ public partial class BoatUi : BoatController
     [Export]
     private Wheel _wheel;
 
+    [Export]
+    private Map _map;
+
+    [Export]
+    private TextureButton _mapButton;
+
+
+
+    public override void _Ready()
+    {
+        _mapButton.Pressed += ShowMap;
+    }
+
+
+
+    private void ShowMap()
+    {
+        _map.Toggle();
+    }
+
 
 
     public override ControlState PollCurrentControl()

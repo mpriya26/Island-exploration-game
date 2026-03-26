@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://dps34ojv128lv"]
+
+[ext_resource type="Script" uid="uid://cshlr1c6imxyf" path="res://Scripts/Boat/Map.cs" id="1_c7s6e"]
+[ext_resource type="Texture2D" uid="uid://kveui8kdvja5" path="res://textures/boatIcon.svg" id="2_e0an3"]
+[ext_resource type="Texture2D" uid="uid://3gvwob0ohguc" path="res://textures/islandIcon.svg" id="3_p5pve"]
+
+[sub_resource type="Gradient" id="Gradient_urblq"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_iw27f"]
+gradient = SubResource("Gradient_urblq")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e6lj2"]
+bg_color = Color(0.54, 0.48960003, 0.32400003, 1)
+
+[sub_resource type="Theme" id="Theme_c7s6e"]
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_e6lj2")
+
+[node name="Map" type="Control" unique_id=108138653 node_paths=PackedStringArray("_exitMapButton")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_c7s6e")
+_boatIcon = ExtResource("2_e0an3")
+_islandIcon = ExtResource("3_p5pve")
+_hiddenAreaIcon = SubResource("GradientTexture2D_iw27f")
+_exitMapButton = NodePath("ExitMapButton")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1112774993]
+layout_mode = 0
+offset_right = 648.0
+offset_bottom = 648.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+theme = SubResource("Theme_c7s6e")
+
+[node name="ExitMapButton" type="Button" parent="." unique_id=669815016]
+visible = false
+top_level = true
+z_index = 4096
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Exit Map"

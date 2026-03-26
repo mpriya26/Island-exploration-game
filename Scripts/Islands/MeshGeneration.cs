@@ -48,7 +48,7 @@ public partial class MeshGeneration : MeshInstance3D
 				var point = new Vector2(x, z) / resolution;
 				var height = noiseSettings.PointHeight(point);
 
-				vertices.Add(new Vector3(x, height, z) * scale / resolution);
+				vertices.Add(new Vector3(x - (resolution / 2), height, z - (resolution / 2)) * scale / resolution);
 				uvs.Add(point);
 				normals.Add(Vector3.Up);
 

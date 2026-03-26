@@ -68,16 +68,26 @@ angular_damp = 0.5
 
 [node name="BoatUi" parent="." unique_id=1344324806 instance=ExtResource("2_fv68v")]
 
+[node name="Compass" parent="BoatUi" index="2" unique_id=404665202 node_paths=PackedStringArray("_tracking")]
+_tracking = NodePath("../../Boat/RigidBody3D")
+_trackingSpeed = 2.0
+_trackingDamping = 0.2
+
+[node name="Map" parent="BoatUi" index="4" unique_id=108138653 node_paths=PackedStringArray("_boat", "_islands")]
+_boat = NodePath("../../Boat/RigidBody3D")
+_islands = NodePath("../../Islands")
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=605869228]
 transform = Transform3D(0.5288235, 0.6220852, -0.5773696, -0.39501143, 0.78250235, 0.48130667, 0.7512067, -0.02645877, 0.6595365, 0, 0, 0)
 
 [node name="Islands" type="Node3D" parent="." unique_id=820543073 node_paths=PackedStringArray("_genCenter")]
 script = ExtResource("5_mpgt8")
-_islandSpacing = 800.0
+IslandSpacing = 1000.0
 _jitter = 0.8
 _islandSize = 500.0
-_genRadius = 1000.0
+_genRadius = 500.0
 _spawnChance = 0.2
 _genCenter = NodePath("../Boat/RigidBody3D")
 
 [editable path="Boat"]
+[editable path="BoatUi"]

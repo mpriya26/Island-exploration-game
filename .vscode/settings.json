@@ -1,5 +1,5 @@
 {
-    "godotTools.editorPath.godot4": "c:\\Users\\Matangi\\Downloads\\Godot_v4.6-stable_mono_win64\\Godot_v4.6-stable_mono_win64\\Godot_v4.6-stable_mono_win64.exe",
+    "godotTools.editorPath.godot4": "/bin/godot-mono",
     "files.exclude": {
         "**/.git": true,
         "**/.svn": true,
