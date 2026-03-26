@@ -1,55 +1,66 @@
 [gd_scene format=3 uid="uid://bhbpvdmqpu2tq"]
 
+[ext_resource type="Shader" uid="uid://cb0upvycdy2y2" path="res://ocean.gdshader" id="1_fv68v"]
 [ext_resource type="PackedScene" uid="uid://cqth8df1e4en6" path="res://boat.tscn" id="1_qqgfp"]
 [ext_resource type="PackedScene" uid="uid://dyu7crpa0rbmw" path="res://boat_ui.tscn" id="2_fv68v"]
 
-[sub_resource type="Gradient" id="Gradient_kjqlq"]
-interpolation_mode = 2
-interpolation_color_space = 2
-offsets = PackedFloat32Array(0.08959538, 0.54046243, 1)
-colors = PackedColorArray(0.028816951, 0.24377581, 0.23223972, 1, 0.1275, 0.51, 0.38250002, 1, 1, 1, 1, 1)
+[sub_resource type="Gradient" id="Gradient_fv68v"]
+colors = PackedColorArray(0, 0, 0, 1, 0.47397572, 0.47397572, 0.47397572, 1)
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_tiovm"]
-noise_type = 2
-seed = 2
-frequency = 0.2138
-offset = Vector3(389.83, -490.23, 333.33)
-fractal_type = 0
-fractal_octaves = 4
-cellular_distance_function = 1
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_s54pb"]
+frequency = 1.0
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_j38dg"]
-width = 2048
-height = 2048
-noise = SubResource("FastNoiseLite_tiovm")
-color_ramp = SubResource("Gradient_kjqlq")
-in_3d_space = true
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_mpgt8"]
+width = 1024
+height = 1024
+noise = SubResource("FastNoiseLite_s54pb")
+color_ramp = SubResource("Gradient_fv68v")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nb2vx"]
-albedo_color = Color(0.07504917, 0.28615472, 0.32935598, 1)
-albedo_texture = SubResource("NoiseTexture2D_j38dg")
-metallic = 0.44
-metallic_specular = 0.0
-grow_amount = 4.552
-proximity_fade_enabled = true
-distance_fade_min_distance = 2.05
-distance_fade_max_distance = 20.3
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_fv68v"]
+noise_type = 3
+frequency = 0.0285
+fractal_octaves = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_s54pb"]
+width = 1024
+height = 1024
+noise = SubResource("FastNoiseLite_fv68v")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s54pb"]
+render_priority = 0
+shader = ExtResource("1_fv68v")
+shader_parameter/scale = 0.1
+shader_parameter/size = 250.0
+shader_parameter/speed = 1.0
+shader_parameter/color = Color(0.27719998, 0.84, 0.63363993, 1)
+shader_parameter/darkColor = Color(0.012000003, 0.24, 0.20960003, 1)
+shader_parameter/foamColor = Color(0.766, 0.8, 0.68, 1)
+shader_parameter/fractalMult = 1.5
+shader_parameter/fractalScale = 0.2
+shader_parameter/fractalLayers = 3
+shader_parameter/uvNoise = SubResource("NoiseTexture2D_s54pb")
+shader_parameter/foam = SubResource("NoiseTexture2D_mpgt8")
+shader_parameter/foamThreshold = 0.8
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_bwgqs"]
 lightmap_size_hint = Vector2i(5002, 5002)
-material = SubResource("StandardMaterial3D_nb2vx")
-size = Vector2(10000, 10000)
+material = SubResource("ShaderMaterial_s54pb")
+size = Vector2(500, 500)
+subdivide_width = 128
+subdivide_depth = 128
 
 [node name="BoatTestOcean" type="Node3D" unique_id=551639879]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1669740199]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.062542, 0.6085777, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -4)
 mesh = SubResource("PlaneMesh_bwgqs")
 
 [node name="Boat" parent="." unique_id=14289713 node_paths=PackedStringArray("_boatController") instance=ExtResource("1_qqgfp")]
 _boatController = NodePath("../BoatUi")
+_propThrust = 2000.0
+_turnSpeed = 30.0
 
 [node name="BoatUi" parent="." unique_id=1344324806 instance=ExtResource("2_fv68v")]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=605869228]
-transform = Transform3D(0.52882355, 0.6220852, -0.5773696, 0, 0.6802733, 0.73295856, 0.84873176, -0.38760576, 0.35974455, 0, 0, 0)
+transform = Transform3D(0.5288235, 0.6220852, -0.5773696, -0.39501143, 0.78250235, 0.48130667, 0.7512067, -0.02645877, 0.6595365, 0, 0, 0)

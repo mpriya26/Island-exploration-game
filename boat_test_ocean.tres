@@ -1,0 +1,17 @@
+[gd_resource type="VisualShader" format=3 uid="uid://d4fyyewfw6awv"]
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_6jl53"]
+parameter_name = "ColorParameter"
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_6jl53"]
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_rxabe"]
+texture = SubResource("NoiseTexture2D_6jl53")
+
+[resource]
+nodes/fragment/0/position = Vector2(1100, 80)
+nodes/fragment/2/node = SubResource("VisualShaderNodeColorParameter_6jl53")
+nodes/fragment/2/position = Vector2(300, 140)
+nodes/fragment/3/node = SubResource("VisualShaderNodeTexture_rxabe")
+nodes/fragment/3/position = Vector2(600, 260)
+nodes/fragment/connections = PackedInt32Array(3, 0, 0, 0)

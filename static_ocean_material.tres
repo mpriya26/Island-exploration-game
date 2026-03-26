@@ -1,0 +1,33 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://b43h12lb0adpf"]
+
+[sub_resource type="Gradient" id="Gradient_kjqlq"]
+interpolation_mode = 2
+interpolation_color_space = 2
+offsets = PackedFloat32Array(0.08959538, 0.54046243, 1)
+colors = PackedColorArray(0.028816951, 0.24377581, 0.23223972, 1, 0.1275, 0.51, 0.38250002, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_tiovm"]
+noise_type = 2
+seed = 2
+frequency = 0.2138
+offset = Vector3(389.83, -490.23, 333.33)
+fractal_type = 0
+fractal_octaves = 4
+cellular_distance_function = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_j38dg"]
+width = 2048
+height = 2048
+noise = SubResource("FastNoiseLite_tiovm")
+color_ramp = SubResource("Gradient_kjqlq")
+in_3d_space = true
+
+[resource]
+albedo_color = Color(0.07504917, 0.28615472, 0.32935598, 1)
+albedo_texture = SubResource("NoiseTexture2D_j38dg")
+metallic = 0.44
+metallic_specular = 0.0
+grow_amount = 4.552
+proximity_fade_enabled = true
+distance_fade_min_distance = 2.05
+distance_fade_max_distance = 20.3

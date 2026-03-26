@@ -11,7 +11,7 @@ radius = 10.0
 height = 140.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_luxk2"]
-size = Vector3(20, 1, 140)
+size = Vector3(20, 5, 140)
 
 [node name="Boat" type="Node3D" unique_id=14289713 node_paths=PackedStringArray("_boatRigidBody")]
 script = ExtResource("1_annr2")
