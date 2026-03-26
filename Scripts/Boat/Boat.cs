@@ -13,20 +13,21 @@ public partial class Boat : Node3D
     private RigidBody3D _boatRigidBody;
 
     [Export]
+    private Node3D _enginePoint;
+
+    [Export]
     private float _propThrust;
 
     [Export]
-    private float _turnSpeed;
+    private float _maxEngineAngle;
 
 
 
     public override void _PhysicsProcess(double delta)
     {
         var controls = _boatController.PollCurrentControl();
-
         var forward = -_boatRigidBody.Transform.Basis.Column2;
 
-        _boatRigidBody.ApplyForce(_propThrust * forward * controls.Throttle);
-        _boatRigidBody.ApplyTorque(_turnSpeed * Vector3.Up * _boatRigidBody.LinearVelocity.LengthSquared() * -controls.Steering);
+        _boatRigidBody.ApplyForce(_propThrust * forward.Rotated(Vector3.Up, controls.Steering * Mathf.DegToRad(_maxEngineAngle)) * controls.Throttle, -forward * _enginePoint.Position.Z);
     }
 }

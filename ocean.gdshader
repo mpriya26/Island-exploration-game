@@ -66,6 +66,7 @@ float voronoi2d(const in vec2 point) {
 }
 
 
+uniform float waveHeightScale = 0.5;
 uniform float scale = 0.1;
 uniform float size = 500.0;
 uniform float speed = 1.0;
@@ -90,15 +91,15 @@ vec2 calcPos(in vec3 worldPos, in vec2 uv)
 
 
 
-float fractalWave(in vec2 pos, float fScale)
+float fractalWave(in vec2 uv, in vec2 pos, float fScale)
 {
-	return pow(voronoi3d(vec3(fScale * pos, speed * TIME)).x, 2.0);
+	return pow(voronoi3d(vec3(fScale * pos, (5.0 * texture(foam, uv).x) + (speed * TIME))).x, 2.0);
 	//return pow(voronoi2d(vec2(fScale * pos)), 2.0);
 }
 
 
 
-float wave(in vec2 pos, float startScale, float fMult, int frac)
+float wave(in vec2 uv, in vec2 pos, float startScale, float fMult, int frac)
 {
 	float res = 0.0;
 	float fScale = startScale;
@@ -106,33 +107,33 @@ float wave(in vec2 pos, float startScale, float fMult, int frac)
 	
 	for (int i = 0; i < frac; i++)
 	{
-		res += height * fractalWave(pos, fScale);
+		res += height * fractalWave(uv, pos, fScale);
 		fScale *= fMult;
 		height *= fractalScale;
 	}
 	
-	return res;
+	return waveHeightScale * res;
 }
 
 
 
-vec3 waveHeight(vec2 pos)
+vec3 waveHeight(in vec2 uv, in vec2 pos)
 {
-	return vec3(pos.x, wave(pos, scale, fractalMult, fractalLayers), pos.y);
+	return vec3(pos.x, wave(uv, pos, scale, fractalMult, fractalLayers), pos.y);
 }
 
 
 
 void vertex()
 {
-	VERTEX = waveHeight(calcPos(NODE_POSITION_WORLD, UV));
+	VERTEX = waveHeight(UV, calcPos(NODE_POSITION_WORLD, UV));
 }
 
 
 
 void fragment()
 {
-	vec3 wHeight = waveHeight(calcPos(NODE_POSITION_WORLD, UV));
+	vec3 wHeight = waveHeight(UV, calcPos(NODE_POSITION_WORLD, UV));
 	float wFactor = wHeight.y;
 	
 	vec3 dx = dFdy(wHeight);

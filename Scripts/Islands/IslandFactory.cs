@@ -4,7 +4,12 @@ using RandomIslandExploration.Scripts.Islands.Noise;
 using System;
 
 
-public class IslandFactory
+
+namespace RandomIslandExploration.Scripts.Islands;
+
+
+
+public class IslandFactory : IIslandFactory
 {
 	public MeshGeneration meshGenerator;
 
@@ -16,7 +21,7 @@ public class IslandFactory
         var perlinNoiseSettings = new PerlinNoiseSettings
         {
             NoiseScale = 2,
-			Height = 2, 
+			Height = 20.0f, 
 			ShapeNoiseFactor = 0.2f,
 			Noise = new FastNoiseLite
 			{
@@ -38,14 +43,11 @@ public class IslandFactory
 		var noiseSettings = meshGenerator.noiseSettings as PerlinNoiseSettings;
 
 		noiseSettings.NoiseScale = randomNumberGenerator.RandfRange(1, 5);
-		noiseSettings.Height = randomNumberGenerator.RandfRange(1, 5);
-		noiseSettings.ShapeNoiseFactor = randomNumberGenerator.RandfRange(0.1f, 0.5f);
+		noiseSettings.Height = 1.0f * randomNumberGenerator.RandfRange(1, 5);
+		noiseSettings.ShapeNoiseFactor = randomNumberGenerator.RandfRange(0.2f, 0.5f);
 		
 		noiseSettings.Noise.Seed++;
 		noiseSettings.ShapeNoise.Seed++;
-		GD.Print("island factory");
-
-
 
 
 		meshGenerator.scale = size;

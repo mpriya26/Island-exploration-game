@@ -41,7 +41,7 @@ public partial class Wheel : Control
 
 
 
-    public float Steering => CurrentAngle / _maxRevolutions;
+    public float Steering => CurrentAngle / (Mathf.Tau * _maxRevolutions);
 
 
 

@@ -1,6 +1,12 @@
 using Godot;
 using System;
 
+
+
+namespace RandomIslandExploration.Scripts.Islands;
+
+
+
 [Tool]
 public partial class TestGenerateIslands : Node3D
 {

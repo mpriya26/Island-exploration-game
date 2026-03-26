@@ -18,7 +18,7 @@ public partial class MeshGeneration : MeshInstance3D
 	public bool update = false;
 
 	[Export]
-	public int resolution = 100;
+	public int resolution = 96;
 
 
 	[Export]
@@ -46,7 +46,7 @@ public partial class MeshGeneration : MeshInstance3D
 			for (int x = 0; x <= resolution; x++)
 			{
 				var point = new Vector2(x, z) / resolution;
-				var height = 10.0f * noiseSettings.PointHeight(point);
+				var height = noiseSettings.PointHeight(point);
 
 				vertices.Add(new Vector3(x, height, z) * scale / resolution);
 				uvs.Add(point);
