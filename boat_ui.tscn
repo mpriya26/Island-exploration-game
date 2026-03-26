@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dxmj5va8g3do" path="res://Scripts/Boat/BoatUi.cs" id="1_sltv7"]
 [ext_resource type="Texture2D" uid="uid://1l8c8n3p3wnn" path="res://textures/wheel.svg" id="2_jaga5"]
+[ext_resource type="Theme" uid="uid://bkmkam2vknpc" path="res://theme.tres" id="2_kh353"]
 [ext_resource type="Script" uid="uid://cad53eci634vn" path="res://Scripts/Boat/Wheel.cs" id="3_l57aq"]
 [ext_resource type="Texture2D" uid="uid://b8le5j4birdps" path="res://textures/compass.svg" id="4_ldbsd"]
 [ext_resource type="Script" uid="uid://dfh1s7l0uumpt" path="res://Scripts/Boat/Compass.cs" id="5_ggijh"]
@@ -32,6 +33,7 @@ offset_left = -96.0
 offset_top = -274.0
 grow_horizontal = 0
 grow_vertical = 0
+theme = ExtResource("2_kh353")
 min_value = -2.0
 max_value = 5.0
 rounded = true

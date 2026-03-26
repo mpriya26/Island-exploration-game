@@ -108,11 +108,6 @@ public partial class Map : Control
 
         var gridSquareSize = Size.X / (2.0f * gridSize.X);
         var offset = -new Vector2(min.X, -max.Y) * gridSquareSize;
-        GD.Print(gridSquareSize);
-        GD.Print(offset);
-        GD.Print(gridSize);
-        GD.Print(max);
-        GD.Print(min);
 
         for (int x = min.X; x <= max.X; x++)
         {
