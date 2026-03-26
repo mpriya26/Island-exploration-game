@@ -141,4 +141,6 @@ void fragment()
 	NORMAL = normalize(cross(dx, dy));
 	TANGENT = normalize(dx);
 	BINORMAL = normalize(dy);
+	
+	ROUGHNESS = 0.1;
 }

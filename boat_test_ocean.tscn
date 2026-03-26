@@ -3,6 +3,7 @@
 [ext_resource type="Shader" uid="uid://cb0upvycdy2y2" path="res://ocean.gdshader" id="1_fv68v"]
 [ext_resource type="PackedScene" uid="uid://cqth8df1e4en6" path="res://boat.tscn" id="1_qqgfp"]
 [ext_resource type="PackedScene" uid="uid://dyu7crpa0rbmw" path="res://boat_ui.tscn" id="2_fv68v"]
+[ext_resource type="Script" uid="uid://d0qslc5efovv4" path="res://Scripts/Follow.cs" id="2_s54pb"]
 
 [sub_resource type="Gradient" id="Gradient_fv68v"]
 colors = PackedColorArray(0, 0, 0, 1, 0.47397572, 0.47397572, 0.47397572, 1)
@@ -29,15 +30,15 @@ noise = SubResource("FastNoiseLite_fv68v")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s54pb"]
 render_priority = 0
 shader = ExtResource("1_fv68v")
-shader_parameter/scale = 0.1
-shader_parameter/size = 250.0
+shader_parameter/scale = 0.05
+shader_parameter/size = 300.0
 shader_parameter/speed = 1.0
 shader_parameter/color = Color(0.27719998, 0.84, 0.63363993, 1)
 shader_parameter/darkColor = Color(0.012000003, 0.24, 0.20960003, 1)
 shader_parameter/foamColor = Color(0.766, 0.8, 0.68, 1)
-shader_parameter/fractalMult = 1.5
-shader_parameter/fractalScale = 0.2
-shader_parameter/fractalLayers = 3
+shader_parameter/fractalMult = 1.8
+shader_parameter/fractalScale = 0.5
+shader_parameter/fractalLayers = 5
 shader_parameter/uvNoise = SubResource("NoiseTexture2D_s54pb")
 shader_parameter/foam = SubResource("NoiseTexture2D_mpgt8")
 shader_parameter/foamThreshold = 0.8
@@ -46,14 +47,16 @@ shader_parameter/foamThreshold = 0.8
 lightmap_size_hint = Vector2i(5002, 5002)
 material = SubResource("ShaderMaterial_s54pb")
 size = Vector2(500, 500)
-subdivide_width = 128
-subdivide_depth = 128
+subdivide_width = 64
+subdivide_depth = 64
 
 [node name="BoatTestOcean" type="Node3D" unique_id=551639879]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1669740199]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -4)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1669740199 node_paths=PackedStringArray("ToFollow")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -150)
 mesh = SubResource("PlaneMesh_bwgqs")
+script = ExtResource("2_s54pb")
+ToFollow = NodePath("../Boat/RigidBody3D")
 
 [node name="Boat" parent="." unique_id=14289713 node_paths=PackedStringArray("_boatController") instance=ExtResource("1_qqgfp")]
 _boatController = NodePath("../BoatUi")
@@ -64,3 +67,5 @@ _turnSpeed = 30.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=605869228]
 transform = Transform3D(0.5288235, 0.6220852, -0.5773696, -0.39501143, 0.78250235, 0.48130667, 0.7512067, -0.02645877, 0.6595365, 0, 0, 0)
+
+[editable path="Boat"]

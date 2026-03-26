@@ -7,11 +7,11 @@ rough = true
 bounce = 0.19
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_annr2"]
-radius = 10.0
-height = 140.0
+radius = 4.0
+height = 50.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_luxk2"]
-size = Vector3(20, 5, 140)
+size = Vector3(8, 5, 50)
 
 [node name="Boat" type="Node3D" unique_id=14289713 node_paths=PackedStringArray("_boatRigidBody")]
 script = ExtResource("1_annr2")
@@ -36,5 +36,5 @@ debug_color = Color(0.822727, 0.3425795, 0.5464311, 0.41960785)
 mesh = SubResource("BoxMesh_luxk2")
 
 [node name="Camera3D" type="Camera3D" parent="RigidBody3D" unique_id=568801384]
-transform = Transform3D(1, 0, 0, 0, 0.20042822, 0.97970843, 0, -0.97970843, 0.20042822, 0, 277.33398, 21.142982)
+transform = Transform3D(1, 0, 0, 0, 0.17364822, 0.9848077, 0, -0.9848077, 0.17364822, 0, 300, 0)
 fov = 50.0
