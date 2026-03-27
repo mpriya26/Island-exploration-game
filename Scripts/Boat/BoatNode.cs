@@ -1,10 +1,16 @@
 
+using System;
+using System.Collections.Generic;
 using Godot;
-using RandomIslandExploration.Scripts.Boat;
+using RandomIslandExploration.Scripts.Collectables;
 
 
 
-public partial class Boat : Node3D
+namespace RandomIslandExploration.Scripts.Boat;
+
+
+
+public partial class BoatNode : Node3D
 {
     [Export]
     private BoatController _boatController;
@@ -27,10 +33,21 @@ public partial class Boat : Node3D
     [Export]
     private float _sideMaxFactor;
 
+    [Export]
+    private CollectablesUi _collectablesUi;
+
+    public bool Paused = false;
+
+    public readonly HashSet<int> CollectedItems = [];
+
+    private Island _currentIsland = null;
+
 
 
     public override void _PhysicsProcess(double delta)
     {
+        if (Paused) return;
+
         var controls = _boatController.PollCurrentControl();
         var forward = -_boatRigidBody.Transform.Basis.Column2;
 
@@ -43,5 +60,37 @@ public partial class Boat : Node3D
             var sideDragForce = Mathf.Clamp(_sideDrag * sideSpeed, -_sideMaxFactor * _boatRigidBody.Mass, _sideMaxFactor * _boatRigidBody.Mass);
             _boatRigidBody.ApplyForce(sideVel * (sideDragForce / sideSpeed));
         }
+    }
+
+
+
+    public void InteractWithIsland(Island island)
+    {
+        if (Paused || _currentIsland == island) return;
+        _currentIsland = island;
+
+        Paused = true;
+
+        _collectablesUi.OpenInfo(island, DoneIslandInteraction);
+    }
+
+
+
+    private void DoneIslandInteraction(Island island, Collectable collectable)
+    {
+        island.Visited = true;
+        Paused = false;
+
+        if (collectable is null) return;
+
+        CollectedItems.Add(collectable.Id);
+    }
+
+
+
+    public void EndInteraction()
+    {
+        Paused = false;
+        _currentIsland = null;
     }
 }

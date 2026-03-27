@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://beqai3v8mjg7d"]
+
+[ext_resource type="Script" uid="uid://10k6bsg8l86m" path="res://Scripts/Collectables/CollectablesUi.cs" id="1_sosbs"]
+
+[sub_resource type="Theme" id="Theme_sosbs"]
+
+[node name="CollectablesUi" type="Control" unique_id=1448262770 node_paths=PackedStringArray("_continueButton", "_storyLabel", "_titleLabel")]
+layout_mode = 3
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 0
+grow_vertical = 2
+script = ExtResource("1_sosbs")
+_continueButton = NodePath("PanelContainer/VBoxContainer/ContinueButton")
+_storyLabel = NodePath("PanelContainer/VBoxContainer/StoryBox")
+_titleLabel = NodePath("PanelContainer/VBoxContainer/Title")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1439826317]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=253411749]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="PanelContainer/VBoxContainer" unique_id=2068478722]
+layout_mode = 2
+text = "Island"
+
+[node name="StoryBox" type="Label" parent="PanelContainer/VBoxContainer" unique_id=1787583505]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+theme = SubResource("Theme_sosbs")
+autowrap_mode = 3
+
+[node name="ContinueButton" type="Button" parent="PanelContainer/VBoxContainer" unique_id=420804192]
+layout_mode = 2
+text = "Continue"

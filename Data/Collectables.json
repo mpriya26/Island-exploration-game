@@ -2,7 +2,42 @@
 [
     {
         "Id": 0,
-        "Name": "Necklace",
-        "Story": "Found on beach."
+        "Name": "Vermilion Flower",
+        "Story": "A vermilion flower lurched over the jagged sand. It cannot outgrow its besieging captor; it can only hope to stretch skyward."
+    },
+    {
+        "Id": 1,
+        "Name": "Amber Fossil",
+        "Story": "The cave hides a mosquito trapped in an amber fossil. Time does not release it from its future."
+    },
+    {
+        "Id": 2,
+        "Name": "Aureolin Ring",
+        "Story": "B̵̧̛̝̩̙͔̠̳̎́̇̽̓̽͐̍͊̔̒̍̏͗̃̿̆̾̈́̃̈̒̇̓̀͘͠ͅͅĖ̴̼͙̫͔̞̪̪͇̙͉̣̰̙̫̀͗͐̇̄̈̂̃̆͂̿̌̈͆̎̓͗̔̌̉̃̀̾̚͘͜͠͠͝W̸̨̡̦͙̱͙͉̤̪̥̲̻̰͇̘̒̊̆̀́̐͋̓̽͗́̄̈́̂̓̇̐̈Ą̵̨̨̛̟̣̥͖̮̝̙͇̣̩̮͍̲͈̳̮̹̗̱̱̤͕̠̺̹̳̯͈̮͂̒͂̀̆͐̓͊́̑̅̄̑̽͋͊́̑͋́̀̔̾͑̚͠R̶̨̡̬̠̟̦̣̦͉̠̪̘̦͔̱̽͆̂͋͛̅͑͊̀͑̂̄̎͊̿̓̈́̆͌̈́͂̿́̋̈́̅̈́̀͠ͅE̷̡̢̧̛͕̳̜̖̲̭̰̘͔͔̲̘͎̗͕͑́̄̃͒̋͂͌̏̅͆͛̒͗̍̅͒͒͌̌̐̿͝ͅ ̶̨͙̹̘̭͆͋̑͌̓̉͗͊̋̽̑̈́̄̈̅̓̽̓̓̍̚͜͝ͅŢ̷̧͉͖̫̖̺̤͓̜͎̬̬͓̪̰̤̘̻͚̱́̈́̎͌̆̐̎̅̀̔̆͘̚͘̚̚̕̕̕͜ͅH̵̡̨̢̜̲͓͙̭̦̫̗͙̫͎̥̪͒̎̐͛́͊̉̀̽̓̄͐͊͗̈́̋̾̾̏̀͐̀̋̓̐̋̔͗͛͛̅̚͘͘͘͘͝͝Ȩ̸̨̢͉̞̫̟̫̻̹͕̲͎̼̥̗͇͙̺̯̠̜̯̪̟͈̻̝̩̇̎̔͘͜ ̴̨̢̨̪̺̘̺͚̜̺̦͕̜͖̼̟͙̮̩͙̭̩̭̳͖̱̦̮̲̳͖͇̻̺̪͎͚̭̖̣̱̿̏́̎̓́̓̅́̅̓̉͊̒͐̑̉̽̕͘͜͠Ó̷̧͙̭͍̥̃͌̋̀̂̿̑̎͋̆̃̇͋͛̆͆̀̎̓̾̇̚N̷̨̡̩̱̩̦̯̯͕̩̮̖̱̣̬̺̤̖͙̯̲̼̫͙̺̲̠͉̼͎̱̟͒̉̄̉̍͊̄̔̐̎̈́͛̇̓̐̈́͑̏̊̎͂̔͜͠͠͠ͅͅY̷̢͕̘͚͌͒̏̽̌͑̑̌̇͗X̶̨̧̡̨̺̱͈̩͕͓̙̯̞̳̩̙͚̜̱̞͍̗̦̺̣͇̱̩̖̩̞̟̤̮̯̣̰͙̝͙̉̊̿̊̆̐͑̈̃̿͐͂͒͝ ̸̧̡̧̢̹͍̦̼͉̳̖̖̣͈̟̥͓̤͙͖̠͉̜̠̩̠̘̈́͛́̌̋͌̂́̌̆̀̽͛́͑̉̽̈͒̋̓̌̏͊͊̓̈́̆́̿̌̕̕͜͝͝͝F̵̨̡̛̹̮̩̻̟͉̻̃̓͊̾̌̂͋̇̔̋̈͂͌̀́̓̈́̀̃̋̃̃͛͌̏̚͘Ợ̵̡͛̓͆̇͂̑́̎̓̃͑̓́̐̈́̀̂͌̌͌̈̏̃̓̉̉̊̄͂̕̕͝͝͝͝͝Ğ̸̛̣͖̘̞͍͙͕̬͉͊͊͗̌̊̊̈́̑̈̆̉͐̃̕͘̚"
+    },
+    {
+        "Id": 3,
+        "Name": "Viridian Frog",
+        "Story": "Its incandescent vertebrae segregates the viridian frog from any possible kin. What we deem beautiful quietly isolates the frog from its own home. "
+    },
+    {
+        "Id": 4,
+        "Name": "Cerulean Crystal",
+        "Story": "cc"
+    },
+    {
+        "Id": 5,
+        "Name": "Amethyst Statue",
+        "Story": "as"
+    },
+    {
+        "Id": 6,
+        "Name": "Onyx Fog",
+        "Story": "Heed the warnings of the aureolin ring, for the onyx fog is hungry. Prowl through the nightfall and the haze will not hesitate to consume the light."
+    },
+    {
+        "Id": 7,
+        "Name": "Ivory Bones",
+        "Story": "ib"
     }
 ]

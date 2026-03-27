@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://dfh1s7l0uumpt" path="res://Scripts/Boat/Compass.cs" id="5_ggijh"]
 [ext_resource type="Texture2D" uid="uid://wjrwb6hd25h7" path="res://textures/heading.svg" id="6_ggijh"]
 [ext_resource type="PackedScene" uid="uid://dps34ojv128lv" path="res://map.tscn" id="7_sa8dg"]
+[ext_resource type="PackedScene" uid="uid://beqai3v8mjg7d" path="res://collectables_ui.tscn" id="9_sa8dg"]
 
 [node name="BoatUi" type="Control" unique_id=1344324806 node_paths=PackedStringArray("_throttleSlider", "_wheel", "_map", "_mapButton")]
 layout_mode = 3
@@ -93,3 +94,11 @@ flip_v = true
 [node name="Map" parent="." unique_id=108138653 instance=ExtResource("7_sa8dg")]
 visible = false
 layout_mode = 1
+
+[node name="CollectablesUi" parent="." unique_id=1448262770 instance=ExtResource("9_sa8dg")]
+visible = false
+layout_mode = 1
+offset_left = -391.0
+offset_top = -54.0
+offset_right = -391.0
+offset_bottom = -54.0

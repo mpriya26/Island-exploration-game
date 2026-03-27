@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cqth8df1e4en6"]
 
-[ext_resource type="Script" uid="uid://t851ov3sggkv" path="res://Scripts/Boat/Boat.cs" id="1_annr2"]
+[ext_resource type="Script" uid="uid://t851ov3sggkv" path="res://Scripts/Boat/BoatNode.cs" id="1_annr2"]
 [ext_resource type="ArrayMesh" uid="uid://lh3fk8r1f7ms" path="res://Models/steamShip.obj" id="2_viw7v"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_luxk2"]

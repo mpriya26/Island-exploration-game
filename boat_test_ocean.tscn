@@ -59,14 +59,15 @@ mesh = SubResource("PlaneMesh_bwgqs")
 script = ExtResource("2_s54pb")
 ToFollow = NodePath("../Boat/RigidBody3D")
 
-[node name="Boat" parent="." unique_id=14289713 node_paths=PackedStringArray("_boatController") instance=ExtResource("1_qqgfp")]
+[node name="Boat" parent="." unique_id=14289713 node_paths=PackedStringArray("_boatController", "_collectablesUi") instance=ExtResource("1_qqgfp")]
 _boatController = NodePath("../BoatUi")
 _propThrust = 20000.0
-_maxEngineAngle = 30.0
 _sideDrag = -500.0
 _sideMaxFactor = 5.0
+_collectablesUi = NodePath("../BoatUi/CollectablesUi")
 
 [node name="RigidBody3D" parent="Boat" index="0" unique_id=1879680047]
+inertia = Vector3(0, 500000, 0)
 linear_damp = 0.1
 angular_damp = 0.7
 
@@ -77,7 +78,7 @@ fov = 75.0
 [node name="BoatUi" parent="." unique_id=1344324806 instance=ExtResource("2_fv68v")]
 
 [node name="Wheel" parent="BoatUi" index="1" unique_id=2014340382]
-_maxRevolutions = 1.5
+_maxRevolutions = 2.0
 
 [node name="Compass" parent="BoatUi" index="2" unique_id=404665202 node_paths=PackedStringArray("_tracking")]
 _tracking = NodePath("../../Boat/RigidBody3D")
@@ -91,19 +92,23 @@ _islands = NodePath("../../Islands")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=605869228]
 transform = Transform3D(0.86689675, 0.35248405, -0.35248402, 0, 0.70710677, 0.7071067, 0.49848774, -0.61298853, 0.6129885, 0, 0, 0)
 
-[node name="Islands" type="Node3D" parent="." unique_id=820543073 node_paths=PackedStringArray("_genCenter")]
+[node name="Islands" type="Node3D" parent="." unique_id=820543073 node_paths=PackedStringArray("_boat", "_genCenter")]
 script = ExtResource("5_mpgt8")
-IslandSpacing = 1000.0
-_jitter = 0.8
-_islandSize = 800.0
-_genRadius = 1000.0
+_islandInteractionDistance = 20.0
+IslandSpacing = 1200.0
+_jitter = 0.6
+_islandSize = 700.0
+_genRadius = 2400.0
+_centerNoGenRadius = 1
 _spawnChance = 0.2
+_boat = NodePath("../Boat")
 _genCenter = NodePath("../Boat/RigidBody3D")
 _islandMaterial = ExtResource("6_b8h67")
 
 [node name="Collectables" type="Node" parent="." unique_id=1513526929]
 script = ExtResource("7_tfaug")
 _collectablesDataPath = "res://Data/Collectables.json"
+_collectablesRarity = 0.5
 
 [editable path="Boat"]
 [editable path="BoatUi"]

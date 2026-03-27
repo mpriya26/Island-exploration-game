@@ -1,6 +1,8 @@
 
 using System.Collections.Generic;
 using Godot;
+using RandomIslandExploration.Scripts.Boat;
+using RandomIslandExploration.Scripts.Collectables;
 
 
 
@@ -10,6 +12,10 @@ namespace RandomIslandExploration.Scripts.Islands;
 
 public partial class IslandPlacer : Node3D
 {
+    [Export]
+    private float _islandInteractionDistance;
+
+
     [Export]
     public float IslandSpacing { get; private set; }
 
@@ -23,6 +29,9 @@ public partial class IslandPlacer : Node3D
     private float _genRadius;
 
     [Export]
+    private int _centerNoGenRadius;
+
+    [Export]
     private float _spawnChance;
 
     [Export]
@@ -31,10 +40,15 @@ public partial class IslandPlacer : Node3D
 
 
     [Export]
+    private BoatNode _boat;
+
+    [Export]
     private Node3D _genCenter;
 
     [Export]
     private Material _islandMaterial;
+
+    private List<int> _remainingCollectables = [];
 
 
 
@@ -43,6 +57,20 @@ public partial class IslandPlacer : Node3D
     private readonly IIslandFactory _islandFactory = new IslandFactory();
     private readonly RandomNumberGenerator _rng = new();
     private readonly Queue<((int x, int y) point, Vector3 pos, float size)> _islandsToGen = [];
+
+
+
+    public override void _Ready()
+    {
+        for (int x = -_centerNoGenRadius; x <= _centerNoGenRadius; x++)
+        {
+            for (int y = -_centerNoGenRadius; y <= _centerNoGenRadius; y++)
+            {
+                var point = (x: x, y: y);
+                _islands.Add(point, null);
+            }
+        }
+    }
 
 
 
@@ -62,7 +90,7 @@ public partial class IslandPlacer : Node3D
                     if (_rng.Randf() < _spawnChance)
                     {
                         var jitter = (x: _rng.RandfRange(0.0f, _jitter), y: _rng.RandfRange(0.0f, _jitter));
-                        var size = Mathf.Clamp(_rng.Randfn(_islandSize, 0.33f * _islandSize), 0.1f * _islandSize, _jitter * IslandSpacing);
+                        var size = Mathf.Clamp(_rng.Randfn(_islandSize, 0.33f * _islandSize), 0.25f * _islandSize, _jitter * IslandSpacing);
                         _islandsToGen.Enqueue((point, new Vector3(point.x + jitter.x, 0.0f, point.y + jitter.x) * IslandSpacing, size));
                     }
                 }
@@ -79,6 +107,21 @@ public partial class IslandPlacer : Node3D
             _islands[islandToGen.point] = island;
             AddChild(island);
             _genFrame = _genFrameSpacing;
+        }
+
+        foreach (var island in Islands.Values)
+        {
+            if (island is null) continue;
+            if ((island.Position + (0.5f * island.Size * new Vector3(1, 0, 1))).DistanceTo(_genCenter.Position) < island.Size + _islandInteractionDistance)
+            {
+                island.CollectableId = CollectablesManager.Instance.NextCollectable();
+                _boat.InteractWithIsland(island);
+                break;
+            }
+            else
+            {
+                _boat.EndInteraction();
+            }
         }
     }
 }
