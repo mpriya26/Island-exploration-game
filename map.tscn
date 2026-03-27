@@ -26,9 +26,11 @@ _hiddenAreaIcon = SubResource("GradientTexture2D_iw27f")
 _exitMapButton = NodePath("ExitMapButton")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1112774993]
-layout_mode = 0
-offset_right = 648.0
-offset_bottom = 648.0
+custom_minimum_size = Vector2(1080, 1080)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2

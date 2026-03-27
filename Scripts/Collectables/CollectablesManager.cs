@@ -43,6 +43,8 @@ public partial class CollectablesManager : Node
         int id = _remainingCollectables[index];
         _remainingCollectables.RemoveAt(index);
 
+        GD.Print(id);
+
         return id;
     }
 

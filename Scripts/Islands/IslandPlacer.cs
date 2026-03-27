@@ -124,10 +124,6 @@ public partial class IslandPlacer : Node3D
 
         if (closestIsland is not null)
         {
-            if (!closestIsland.Visited)
-            {
-                closestIsland.CollectableId = CollectablesManager.Instance.NextCollectable();
-            }
             _boat.InteractWithIsland(closestIsland);
         }
         else

@@ -21,7 +21,7 @@ script = ExtResource("1_sltv7")
 _throttleSlider = NodePath("Throttle")
 _wheel = NodePath("Wheel")
 _map = NodePath("Map")
-_mapButton = NodePath("Compass/TextureButton")
+_mapButton = NodePath("Heading/Compass/TextureButton")
 
 [node name="Throttle" type="VSlider" parent="." unique_id=1219970228]
 layout_mode = 1
@@ -30,8 +30,8 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -96.0
-offset_top = -274.0
+offset_left = -278.0
+offset_top = -395.0
 grow_horizontal = 0
 grow_vertical = 0
 theme = ExtResource("2_kh353")
@@ -48,10 +48,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -527.0
-offset_top = -386.0
-offset_right = -15.0
-offset_bottom = 126.0
+offset_left = -259.0
+offset_top = -414.0
+offset_right = 253.0
+offset_bottom = 98.0
 grow_horizontal = 2
 grow_vertical = 0
 pivot_offset_ratio = Vector2(0.5, 0.5)
@@ -64,32 +64,37 @@ _maxRevolutions = 3.0
 _drag = 0.02
 _minVelocity = 0.05
 
-[node name="Compass" type="TextureRect" parent="." unique_id=404665202]
+[node name="Heading" type="TextureRect" parent="." unique_id=300826751]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -140.0
+offset_top = 25.0
+offset_right = -83.0
+offset_bottom = 82.0
+grow_horizontal = 0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("6_ggijh")
+expand_mode = 1
+flip_v = true
+
+[node name="Compass" type="TextureRect" parent="Heading" unique_id=404665202]
+show_behind_parent = true
 layout_mode = 0
-offset_left = 958.0
-offset_top = 38.0
-offset_right = 1137.0
-offset_bottom = 217.0
+offset_left = -61.0
+offset_top = 26.0
+offset_right = 118.0
+offset_bottom = 205.0
 pivot_offset_ratio = Vector2(0.5, 0.5)
 texture = ExtResource("4_ldbsd")
 expand_mode = 1
 script = ExtResource("5_ggijh")
 
-[node name="TextureButton" type="TextureButton" parent="Compass" unique_id=991304942]
+[node name="TextureButton" type="TextureButton" parent="Heading/Compass" unique_id=991304942]
 layout_mode = 0
 offset_right = 180.0
 offset_bottom = 180.0
-
-[node name="Heading" type="TextureRect" parent="." unique_id=300826751]
-layout_mode = 0
-offset_left = 1019.0
-offset_top = 12.0
-offset_right = 1076.0
-offset_bottom = 69.0
-pivot_offset_ratio = Vector2(0.5, 0.5)
-texture = ExtResource("6_ggijh")
-expand_mode = 1
-flip_v = true
 
 [node name="Map" parent="." unique_id=108138653 instance=ExtResource("7_sa8dg")]
 visible = false

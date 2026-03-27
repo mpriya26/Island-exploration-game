@@ -86,14 +86,14 @@ uniform float foamThreshold;
 
 vec2 calcPos(in vec3 worldPos, in vec2 uv)
 {
-	return worldPos.xz + (size * (((uv + (0.01 * texture(uvNoise, uv).xy)) * 2.0) - 1.0));
+	return worldPos.xz + (size * (((uv + (0.01 * texture(uvNoise, worldPos.xz / foamThreshold).xy)) * 2.0) - 1.0));
 }
 
 
 
 float fractalWave(in vec2 uv, in vec2 pos, float fScale)
 {
-	return pow(voronoi3d(vec3(fScale * pos, (5.0 * texture(foam, uv).x) + (speed * TIME))).x, 2.0);
+	return pow(voronoi3d(vec3(fScale * pos, (5.0 * texture(foam, pos / foamThreshold).x) + (fScale * speed * TIME))).x, 2.0);
 	//return pow(voronoi2d(vec2(fScale * pos)), 2.0);
 }
 

@@ -69,6 +69,11 @@ public partial class BoatNode : Node3D
         if (Paused || _currentIsland == island) return;
         _currentIsland = island;
 
+        if (!_currentIsland.Visited)
+        {
+            _currentIsland.CollectableId = CollectablesManager.Instance.NextCollectable();
+        }
+
         Paused = true;
 
         _collectablesUi.OpenInfo(island, DoneIslandInteraction);
