@@ -109,19 +109,30 @@ public partial class IslandPlacer : Node3D
             _genFrame = _genFrameSpacing;
         }
 
+        Island closestIsland = null;
+        var closestDistance = (_jitter * IslandSpacing) + _islandInteractionDistance;
         foreach (var island in Islands.Values)
         {
             if (island is null) continue;
-            if ((island.Position + (0.5f * island.Size * new Vector3(1, 0, 1))).DistanceTo(_genCenter.Position) < island.Size + _islandInteractionDistance)
+            var distance = (island.Position + (0.5f * island.Size * new Vector3(1, 0, 1))).DistanceTo(_genCenter.Position);
+            if (distance < island.Size + _islandInteractionDistance && distance < closestDistance)
             {
-                island.CollectableId = CollectablesManager.Instance.NextCollectable();
-                _boat.InteractWithIsland(island);
-                break;
+                closestIsland = island;
+                closestDistance = distance;
             }
-            else
+        }
+
+        if (closestIsland is not null)
+        {
+            if (!closestIsland.Visited)
             {
-                _boat.EndInteraction();
+                closestIsland.CollectableId = CollectablesManager.Instance.NextCollectable();
             }
+            _boat.InteractWithIsland(closestIsland);
+        }
+        else
+        {
+            _boat.EndInteraction();
         }
     }
 }

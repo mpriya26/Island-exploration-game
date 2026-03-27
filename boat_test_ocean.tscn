@@ -33,12 +33,12 @@ noise = SubResource("FastNoiseLite_fv68v")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s54pb"]
 render_priority = 0
 shader = ExtResource("1_fv68v")
-shader_parameter/waveHeightScale = 0.5
+shader_parameter/waveHeightScale = 1.0
 shader_parameter/scale = 0.05
 shader_parameter/size = 600.0
-shader_parameter/speed = 1.0
-shader_parameter/color = Color(0.27719998, 0.84, 0.63363993, 1)
-shader_parameter/darkColor = Color(0.012000003, 0.24, 0.20960003, 1)
+shader_parameter/speed = 0.5
+shader_parameter/color = Color(0.37259996, 0.69, 0.57361996, 1)
+shader_parameter/darkColor = Color(0.09762614, 0.09432956, 0.16522905, 1)
 shader_parameter/foamColor = Color(0.766, 0.8, 0.68, 1)
 shader_parameter/fractalMult = 1.8
 shader_parameter/fractalScale = 0.5
@@ -51,6 +51,28 @@ shader_parameter/foamThreshold = 0.8
 material = SubResource("ShaderMaterial_s54pb")
 subdivide_width = 64
 subdivide_depth = 64
+
+[sub_resource type="Environment" id="Environment_tfaug"]
+ambient_light_source = 3
+ambient_light_color = Color(1, 1, 1, 1)
+reflected_light_source = 2
+glow_enabled = true
+glow_normalized = true
+glow_intensity = 4.92
+glow_bloom = 0.09
+glow_blend_mode = 2
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.005
+volumetric_fog_albedo = Color(0.14138103, 0.2048836, 0.23767921, 1)
+volumetric_fog_emission_energy = 0.0
+volumetric_fog_anisotropy = 0.42
+volumetric_fog_length = 1000.0
+adjustment_enabled = true
+adjustment_contrast = 1.055
+adjustment_saturation = 0.77
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_7jh7c"]
+exposure_multiplier = 2.699
 
 [node name="BoatTestOcean" type="Node3D" unique_id=551639879]
 
@@ -71,9 +93,14 @@ inertia = Vector3(0, 500000, 0)
 linear_damp = 0.1
 angular_damp = 0.7
 
-[node name="Camera3D" parent="Boat/RigidBody3D" index="2" unique_id=568801384]
+[node name="Camera3D" parent="Boat/RigidBody3D" index="1" unique_id=568801384]
 transform = Transform3D(1, 0, 0, 0, 0.17364822, 0.9848077, 0, -0.9848077, 0.17364822, 0, 275, 0)
 fov = 75.0
+
+[node name="SpotLight3D" parent="Boat/RigidBody3D/Visual" parent_id_path=PackedInt32Array(14289713, 23642658) index="1" unique_id=410558416]
+light_energy = 2000.0
+light_size = 1.0
+spot_angle = 15.0
 
 [node name="BoatUi" parent="." unique_id=1344324806 instance=ExtResource("2_fv68v")]
 
@@ -90,11 +117,13 @@ _boat = NodePath("../../Boat/RigidBody3D")
 _islands = NodePath("../../Islands")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=605869228]
-transform = Transform3D(0.86689675, 0.35248405, -0.35248402, 0, 0.70710677, 0.7071067, 0.49848774, -0.61298853, 0.6129885, 0, 0, 0)
+transform = Transform3D(-0.53582674, 0.17554565, -0.8258773, 0, 0.97814757, 0.20791167, 0.844328, 0.11140464, -0.5241176, 0, 0, 0)
+light_color = Color(0.8024331, 0.92530465, 0.99946123, 1)
+light_energy = 0.5
 
 [node name="Islands" type="Node3D" parent="." unique_id=820543073 node_paths=PackedStringArray("_boat", "_genCenter")]
 script = ExtResource("5_mpgt8")
-_islandInteractionDistance = 20.0
+_islandInteractionDistance = 10.0
 IslandSpacing = 1200.0
 _jitter = 0.6
 _islandSize = 700.0
@@ -108,7 +137,11 @@ _islandMaterial = ExtResource("6_b8h67")
 [node name="Collectables" type="Node" parent="." unique_id=1513526929]
 script = ExtResource("7_tfaug")
 _collectablesDataPath = "res://Data/Collectables.json"
-_collectablesRarity = 0.5
+_collectablesRarity = 0.3
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1737906732]
+environment = SubResource("Environment_tfaug")
+camera_attributes = SubResource("CameraAttributesPractical_7jh7c")
 
 [editable path="Boat"]
 [editable path="BoatUi"]

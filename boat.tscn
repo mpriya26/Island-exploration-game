@@ -32,13 +32,36 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0
 shape = SubResource("CapsuleShape3D_annr2")
 debug_color = Color(0.822727, 0.3425795, 0.5464311, 0.41960785)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D" unique_id=1374517296]
-transform = Transform3D(-2.1855694e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.1855694e-08, 0, 1.7602053, 0)
-mesh = ExtResource("2_viw7v")
-
 [node name="Camera3D" type="Camera3D" parent="RigidBody3D" unique_id=568801384]
 transform = Transform3D(1, 0, 0, 0, 0.17364822, 0.9848077, 0, -0.9848077, 0.17364822, 0, 500, 0)
 fov = 50.0
 
 [node name="EnginePos" type="Node3D" parent="RigidBody3D" unique_id=370872145]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 24)
+
+[node name="Visual" type="Node3D" parent="RigidBody3D" unique_id=23642658]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D/Visual" unique_id=1374517296]
+transform = Transform3D(-2.1855694e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.1855694e-08, 0, 1.7602053, 0)
+mesh = ExtResource("2_viw7v")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="RigidBody3D/Visual" unique_id=410558416]
+transform = Transform3D(1, 0, 0, 0, 0.9979716, 0.06366145, 0, -0.06366145, 0.9979716, 0, 3.4403162, -25.645912)
+light_color = Color(0.8172907, 0.6743635, 0.39032692, 1)
+light_energy = 1000.0
+spot_range = 200.0
+spot_angle = 10.0
+
+[node name="PortLight" type="SpotLight3D" parent="RigidBody3D/Visual" unique_id=48523786]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -3.2438684, 4.9834647, -17.118)
+light_color = Color(1, 0.43097916, 0.4672768, 1)
+light_energy = 50.0
+light_size = 0.1
+spot_range = 7.21963
+
+[node name="StarboardLight" type="SpotLight3D" parent="RigidBody3D/Visual" unique_id=1572383914]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 3.244, 4.983, -17.118)
+light_color = Color(0.4096293, 0.74068904, 0.20238078, 1)
+light_energy = 50.0
+light_size = 0.1
+spot_range = 7.21963
