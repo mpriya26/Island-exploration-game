@@ -63,7 +63,7 @@ _boatController = NodePath("../BoatUi")
 _propThrust = 20000.0
 _maxEngineAngle = 30.0
 _sideDrag = -500.0
-_sideMaxFactor = 3.0
+_sideMaxFactor = 5.0
 
 [node name="RigidBody3D" parent="Boat" index="0" unique_id=1879680047]
 linear_damp = 0.1
