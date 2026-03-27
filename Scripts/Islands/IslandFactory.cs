@@ -38,7 +38,7 @@ public class IslandFactory : IIslandFactory
 		meshGenerator.noiseSettings = perlinNoiseSettings;
 
 	}
-	public MeshInstance3D GenerateIsland(float size)
+	public Island GenerateIsland(float size)
 	{
 		var noiseSettings = meshGenerator.noiseSettings as PerlinNoiseSettings;
 
@@ -51,9 +51,12 @@ public class IslandFactory : IIslandFactory
 
 
 		meshGenerator.scale = size;
-		var newNode = new MeshInstance3D();
-		newNode.Mesh = meshGenerator.GenMesh();
-		return newNode;
+        var newNode = new Island
+        {
+            Mesh = meshGenerator.GenMesh(),
+			Size = size,
+        };
+        return newNode;
 	}
 
 }

@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://bhbpvdmqpu2tq"]
 
-[ext_resource type="Shader" uid="uid://cb0upvycdy2y2" path="res://ocean.gdshader" id="1_fv68v"]
+[ext_resource type="Shader" uid="uid://cb0upvycdy2y2" path="res://Shaders/ocean.gdshader" id="1_fv68v"]
 [ext_resource type="PackedScene" uid="uid://cqth8df1e4en6" path="res://boat.tscn" id="1_qqgfp"]
 [ext_resource type="PackedScene" uid="uid://dyu7crpa0rbmw" path="res://boat_ui.tscn" id="2_fv68v"]
 [ext_resource type="Script" uid="uid://d0qslc5efovv4" path="res://Scripts/Follow.cs" id="2_s54pb"]
 [ext_resource type="Script" uid="uid://bb3llqmr5f1ha" path="res://Scripts/Islands/IslandPlacer.cs" id="5_mpgt8"]
-[ext_resource type="Material" uid="uid://dsfdfr3dpm1p3" path="res://islandMaterial.tres" id="6_b8h67"]
+[ext_resource type="Material" uid="uid://dsfdfr3dpm1p3" path="res://Shaders/islandMaterial.tres" id="6_b8h67"]
 
 [sub_resource type="Gradient" id="Gradient_fv68v"]
 colors = PackedColorArray(0, 0, 0, 1, 0.47397572, 0.47397572, 0.47397572, 1)
@@ -66,8 +66,8 @@ _sideDrag = -500.0
 _sideMaxFactor = 3.0
 
 [node name="RigidBody3D" parent="Boat" index="0" unique_id=1879680047]
-mass = 2000.0
-angular_damp = 0.5
+linear_damp = 0.1
+angular_damp = 0.7
 
 [node name="BoatUi" parent="." unique_id=1344324806 instance=ExtResource("2_fv68v")]
 
@@ -90,8 +90,8 @@ transform = Transform3D(0.86689675, 0.35248405, -0.35248402, 0, 0.70710677, 0.70
 script = ExtResource("5_mpgt8")
 IslandSpacing = 1000.0
 _jitter = 0.8
-_islandSize = 500.0
-_genRadius = 500.0
+_islandSize = 800.0
+_genRadius = 1000.0
 _spawnChance = 0.2
 _genCenter = NodePath("../Boat/RigidBody3D")
 _islandMaterial = ExtResource("6_b8h67")

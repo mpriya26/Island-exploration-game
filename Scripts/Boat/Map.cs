@@ -76,7 +76,7 @@ public partial class Map : Control
         Clear();
 
         var shownPoints = new HashSet<Vector2I>();
-        var islandPoints = new Dictionary<Vector2, Node3D>();
+        var islandPoints = new Dictionary<Vector2, Island>();
         var max = new Vector2I();
         var min = new Vector2I();
 
@@ -131,7 +131,7 @@ public partial class Map : Control
                 {
                     var islandIcon = new TextureRect
                     {
-                        Size = 0.3f * new Vector2(gridSquareSize, gridSquareSize),
+                        Size = new Vector2(gridSquareSize, gridSquareSize) * island.Size / _islands.IslandSpacing,
                         Position = offset + (gridSquareSize * new Vector2(island.Position.X, island.Position.Z) / _islands.IslandSpacing),
                         Texture = _islandIcon,
                         ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize,

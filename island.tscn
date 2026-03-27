@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dvm8pf8ptagd5" path="res://Scripts/Islands/MeshGeneration.cs" id="1_0iamf"]
 [ext_resource type="Script" uid="uid://c2k5be5iv4ti2" path="res://Scripts/Islands/TestGenerateIslands.cs" id="1_fgmf3"]
 [ext_resource type="Script" uid="uid://m2buyjq50ka0" path="res://Scripts/Islands/Noise/PerlinNoiseSettings.cs" id="2_hdtfb"]
-[ext_resource type="Material" uid="uid://dsfdfr3dpm1p3" path="res://islandMaterial.tres" id="2_qurb2"]
+[ext_resource type="Material" uid="uid://dsfdfr3dpm1p3" path="res://Shaders/islandMaterial.tres" id="2_qurb2"]
 
 [sub_resource type="Environment" id="Environment_0iamf"]
 background_mode = 3

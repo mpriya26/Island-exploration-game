@@ -38,8 +38,8 @@ public partial class IslandPlacer : Node3D
 
 
 
-    public IReadOnlyDictionary<(int x, int y), Node3D> Islands => _islands;
-    private readonly Dictionary<(int x, int y), Node3D> _islands = [];
+    public IReadOnlyDictionary<(int x, int y), Island> Islands => _islands;
+    private readonly Dictionary<(int x, int y), Island> _islands = [];
     private readonly IIslandFactory _islandFactory = new IslandFactory();
     private readonly RandomNumberGenerator _rng = new();
     private readonly Queue<((int x, int y) point, Vector3 pos, float size)> _islandsToGen = [];

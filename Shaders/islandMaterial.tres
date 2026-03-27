@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" format=3 uid="uid://dsfdfr3dpm1p3"]
 
-[ext_resource type="Shader" uid="uid://cdsgawq0emhhc" path="res://islandShader.gdshader" id="1_r362q"]
+[ext_resource type="Shader" uid="uid://cdsgawq0emhhc" path="res://Shaders/islandShader.gdshader" id="1_r362q"]
 
 [sub_resource type="Gradient" id="Gradient_04hb4"]
 interpolation_mode = 2
