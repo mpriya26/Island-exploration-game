@@ -33,6 +33,9 @@ public partial class IslandPlacer : Node3D
     [Export]
     private Node3D _genCenter;
 
+    [Export]
+    private Material _islandMaterial;
+
 
 
     public IReadOnlyDictionary<(int x, int y), Node3D> Islands => _islands;
@@ -59,7 +62,7 @@ public partial class IslandPlacer : Node3D
                     if (_rng.Randf() < _spawnChance)
                     {
                         var jitter = (x: _rng.RandfRange(0.0f, _jitter), y: _rng.RandfRange(0.0f, _jitter));
-                        var size = Mathf.Clamp(_rng.Randfn(_islandSize, 0.33f * _islandSize), 0.25f * _islandSize, _jitter * IslandSpacing);
+                        var size = Mathf.Clamp(_rng.Randfn(_islandSize, 0.33f * _islandSize), 0.1f * _islandSize, _jitter * IslandSpacing);
                         _islandsToGen.Enqueue((point, new Vector3(point.x + jitter.x, 0.0f, point.y + jitter.x) * IslandSpacing, size));
                     }
                 }
@@ -71,6 +74,7 @@ public partial class IslandPlacer : Node3D
         {
             var island = _islandFactory.GenerateIsland(islandToGen.size);
             island.Name = $"Island({islandToGen.point.x}, {islandToGen.point.y})";
+            island.MaterialOverride = _islandMaterial;
             island.Position = islandToGen.pos;
             _islands[islandToGen.point] = island;
             AddChild(island);

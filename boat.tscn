@@ -19,6 +19,7 @@ _boatRigidBody = NodePath("RigidBody3D")
 _enginePoint = NodePath("RigidBody3D/EnginePos")
 _propThrust = 1000.0
 _maxEngineAngle = 60.0
+_sideDrag = 100.0
 
 [node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=1879680047]
 axis_lock_linear_y = true

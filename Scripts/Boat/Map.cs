@@ -107,7 +107,7 @@ public partial class Map : Control
         gridSize = max - min;
 
         var gridSquareSize = Size.X / (2.0f * gridSize.X);
-        var offset = -new Vector2(min.X, -max.Y) * gridSquareSize;
+        var offset = -new Vector2(min.X, min.Y) * gridSquareSize;
 
         for (int x = min.X; x <= max.X; x++)
         {

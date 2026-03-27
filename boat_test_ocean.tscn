@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dyu7crpa0rbmw" path="res://boat_ui.tscn" id="2_fv68v"]
 [ext_resource type="Script" uid="uid://d0qslc5efovv4" path="res://Scripts/Follow.cs" id="2_s54pb"]
 [ext_resource type="Script" uid="uid://bb3llqmr5f1ha" path="res://Scripts/Islands/IslandPlacer.cs" id="5_mpgt8"]
+[ext_resource type="Material" uid="uid://dsfdfr3dpm1p3" path="res://islandMaterial.tres" id="6_b8h67"]
 
 [sub_resource type="Gradient" id="Gradient_fv68v"]
 colors = PackedColorArray(0, 0, 0, 1, 0.47397572, 0.47397572, 0.47397572, 1)
@@ -40,15 +41,15 @@ shader_parameter/darkColor = Color(0.012000003, 0.24, 0.20960003, 1)
 shader_parameter/foamColor = Color(0.766, 0.8, 0.68, 1)
 shader_parameter/fractalMult = 1.8
 shader_parameter/fractalScale = 0.5
-shader_parameter/fractalLayers = 5
+shader_parameter/fractalLayers = 3
 shader_parameter/uvNoise = SubResource("NoiseTexture2D_s54pb")
 shader_parameter/foam = SubResource("NoiseTexture2D_mpgt8")
 shader_parameter/foamThreshold = 0.8
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_bwgqs"]
 material = SubResource("ShaderMaterial_s54pb")
-subdivide_width = 64
-subdivide_depth = 64
+subdivide_width = 128
+subdivide_depth = 128
 
 [node name="BoatTestOcean" type="Node3D" unique_id=551639879]
 
@@ -59,14 +60,19 @@ ToFollow = NodePath("../Boat/RigidBody3D")
 
 [node name="Boat" parent="." unique_id=14289713 node_paths=PackedStringArray("_boatController") instance=ExtResource("1_qqgfp")]
 _boatController = NodePath("../BoatUi")
-_propThrust = 7000.0
+_propThrust = 20000.0
 _maxEngineAngle = 30.0
+_sideDrag = -500.0
+_sideMaxFactor = 3.0
 
 [node name="RigidBody3D" parent="Boat" index="0" unique_id=1879680047]
 mass = 2000.0
 angular_damp = 0.5
 
 [node name="BoatUi" parent="." unique_id=1344324806 instance=ExtResource("2_fv68v")]
+
+[node name="Wheel" parent="BoatUi" index="1" unique_id=2014340382]
+_maxRevolutions = 1.5
 
 [node name="Compass" parent="BoatUi" index="2" unique_id=404665202 node_paths=PackedStringArray("_tracking")]
 _tracking = NodePath("../../Boat/RigidBody3D")
@@ -78,7 +84,7 @@ _boat = NodePath("../../Boat/RigidBody3D")
 _islands = NodePath("../../Islands")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=605869228]
-transform = Transform3D(0.5288235, 0.6220852, -0.5773696, -0.39501143, 0.78250235, 0.48130667, 0.7512067, -0.02645877, 0.6595365, 0, 0, 0)
+transform = Transform3D(0.86689675, 0.35248405, -0.35248402, 0, 0.70710677, 0.7071067, 0.49848774, -0.61298853, 0.6129885, 0, 0, 0)
 
 [node name="Islands" type="Node3D" parent="." unique_id=820543073 node_paths=PackedStringArray("_genCenter")]
 script = ExtResource("5_mpgt8")
@@ -88,6 +94,7 @@ _islandSize = 500.0
 _genRadius = 500.0
 _spawnChance = 0.2
 _genCenter = NodePath("../Boat/RigidBody3D")
+_islandMaterial = ExtResource("6_b8h67")
 
 [editable path="Boat"]
 [editable path="BoatUi"]

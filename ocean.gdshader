@@ -136,12 +136,12 @@ void fragment()
 	vec3 wHeight = waveHeight(UV, calcPos(NODE_POSITION_WORLD, UV));
 	float wFactor = wHeight.y;
 	
-	vec3 dx = dFdy(wHeight);
-	vec3 dy = dFdx(wHeight);
+	vec3 dx = dFdx(wHeight);
+	vec3 dy = dFdy(wHeight);
+	vec3 worldNormal = normalize(cross(dy, dx));
+	
 	ALBEDO = mix(darkColor, color, wFactor);
-	NORMAL = normalize(cross(dx, dy));
-	TANGENT = normalize(dx);
-	BINORMAL = normalize(dy);
+	NORMAL = (VIEW_MATRIX * vec4(worldNormal, 0.0)).xyz;
 	
 	ROUGHNESS = 0.1;
 }

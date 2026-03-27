@@ -1,0 +1,57 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://dsfdfr3dpm1p3"]
+
+[ext_resource type="Shader" uid="uid://cdsgawq0emhhc" path="res://islandShader.gdshader" id="1_r362q"]
+
+[sub_resource type="Gradient" id="Gradient_04hb4"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.035714287, 0.20864661, 0.4793233, 0.65601504, 1)
+colors = PackedColorArray(0.74, 0.65712, 0.5032, 1, 0.4509804, 0.5058824, 0.28235295, 1, 0.23752832, 0.53, 0.12190001, 1, 0.3627, 0.39, 0.38272, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_gljqa"]
+gradient = SubResource("Gradient_04hb4")
+
+[sub_resource type="Gradient" id="Gradient_qurb2"]
+colors = PackedColorArray(0.73350304, 0.6944242, 0.63748467, 1, 0.86096233, 0.830499, 0.83599937, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_04hb4"]
+noise_type = 4
+frequency = 0.0212
+fractal_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_gljqa"]
+width = 1024
+height = 1024
+noise = SubResource("FastNoiseLite_04hb4")
+color_ramp = SubResource("Gradient_qurb2")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_b4opu"]
+fractal_type = 2
+fractal_weighted_strength = 0.12
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5jwi3"]
+width = 1024
+height = 1024
+noise = SubResource("FastNoiseLite_b4opu")
+in_3d_space = true
+as_normal_map = true
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_r362q")
+shader_parameter/albedo = Color(0.45162433, 0.5076331, 0.28366864, 1)
+shader_parameter/texture_albedo = SubResource("NoiseTexture2D_gljqa")
+shader_parameter/albedo_texture_size = Vector2i(512, 512)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/specular = 0.0
+shader_parameter/metallic = 0.0
+shader_parameter/texture_normal = SubResource("NoiseTexture2D_5jwi3")
+shader_parameter/normal_scale = 0.2
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/min_height = -1.0
+shader_parameter/max_height = 10.0
+shader_parameter/height_albedo = SubResource("GradientTexture2D_gljqa")
