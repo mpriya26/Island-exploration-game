@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://d0qslc5efovv4" path="res://Scripts/Follow.cs" id="2_s54pb"]
 [ext_resource type="Script" uid="uid://bb3llqmr5f1ha" path="res://Scripts/Islands/IslandPlacer.cs" id="5_mpgt8"]
 [ext_resource type="Material" uid="uid://dsfdfr3dpm1p3" path="res://Shaders/islandMaterial.tres" id="6_b8h67"]
+[ext_resource type="Script" uid="uid://dsvbkreruii8i" path="res://Scripts/Collectables/CollectablesManager.cs" id="7_tfaug"]
 
 [sub_resource type="Gradient" id="Gradient_fv68v"]
 colors = PackedColorArray(0, 0, 0, 1, 0.47397572, 0.47397572, 0.47397572, 1)
@@ -48,8 +49,8 @@ shader_parameter/foamThreshold = 0.8
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_bwgqs"]
 material = SubResource("ShaderMaterial_s54pb")
-subdivide_width = 128
-subdivide_depth = 128
+subdivide_width = 64
+subdivide_depth = 64
 
 [node name="BoatTestOcean" type="Node3D" unique_id=551639879]
 
@@ -68,6 +69,10 @@ _sideMaxFactor = 5.0
 [node name="RigidBody3D" parent="Boat" index="0" unique_id=1879680047]
 linear_damp = 0.1
 angular_damp = 0.7
+
+[node name="Camera3D" parent="Boat/RigidBody3D" index="2" unique_id=568801384]
+transform = Transform3D(1, 0, 0, 0, 0.17364822, 0.9848077, 0, -0.9848077, 0.17364822, 0, 275, 0)
+fov = 75.0
 
 [node name="BoatUi" parent="." unique_id=1344324806 instance=ExtResource("2_fv68v")]
 
@@ -95,6 +100,10 @@ _genRadius = 1000.0
 _spawnChance = 0.2
 _genCenter = NodePath("../Boat/RigidBody3D")
 _islandMaterial = ExtResource("6_b8h67")
+
+[node name="Collectables" type="Node" parent="." unique_id=1513526929]
+script = ExtResource("7_tfaug")
+_collectablesDataPath = "res://Data/Collectables.json"
 
 [editable path="Boat"]
 [editable path="BoatUi"]

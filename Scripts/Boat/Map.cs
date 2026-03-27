@@ -137,6 +137,7 @@ public partial class Map : Control
                         ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize,
                         MouseFilter = MouseFilterEnum.Ignore,
                         Name = $"IslandIcon({x}, {y})",
+                        Modulate = island.Visited ? Color.FromHsv(0.0f, 0.0f, 0.5f) : Color.FromHsv(0.0f, 0.0f, 1.0f),
                     };
                     _icons.Add(islandIcon);
                 }
