@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Godot;
 using RandomIslandExploration.Scripts.Boat;
-using RandomIslandExploration.Scripts.Collectables;
 
 
 

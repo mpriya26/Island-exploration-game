@@ -39,4 +39,8 @@ public partial class BoatUi : BoatController
 
     public override ControlState PollCurrentControl()
         => new((float)(_throttleSlider.Value / _throttleSlider.MaxValue), _wheel.Steering);
+
+
+
+    public override void ResetThrottle() => _throttleSlider.Value = 0.0f;
 }

@@ -92,12 +92,9 @@ _collectablesUi = NodePath("../BoatUi/CollectablesUi")
 
 [node name="RigidBody3D" parent="Boat" index="0" unique_id=1879680047]
 inertia = Vector3(0, 500000, 0)
+linear_damp = 0.2
 
-[node name="Camera3D" parent="Boat/RigidBody3D" index="1" unique_id=568801384]
-transform = Transform3D(1, 0, 0, 0, 0.17364822, 0.9848077, 0, -0.9848077, 0.17364822, 0, 275, 0)
-fov = 75.0
-
-[node name="Visual" parent="Boat/RigidBody3D" index="3" unique_id=23642658]
+[node name="Visual" parent="Boat/RigidBody3D" index="2" unique_id=23642658]
 script = ExtResource("4_7jh7c")
 _period = Vector3(20, 5, 10)
 _amount = Vector3(3, 1, 10)
@@ -107,6 +104,11 @@ _offset = Vector3(0.1, 0.3, 0.5)
 light_energy = 2000.0
 light_size = 1.0
 spot_angle = 15.0
+
+[node name="Camera3D" parent="Boat" index="1" unique_id=568801384]
+transform = Transform3D(1, 0, 0, 0, 0.17364822, 0.9848077, 0, -0.9848077, 0.17364822, 0, 275, 0)
+_followSpeed = 0.1
+_rotationFollowSpeed = 0.01
 
 [node name="BoatUi" parent="." unique_id=1344324806 instance=ExtResource("2_fv68v")]
 
