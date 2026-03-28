@@ -15,6 +15,9 @@ public partial class CollectablesUi : Control
     private Button _continueButton;
 
     [Export]
+    private Button _leaveButton;
+
+    [Export]
     private Label _storyLabel;
 
     [Export]
@@ -22,6 +25,7 @@ public partial class CollectablesUi : Control
 
 
     private Action<Island, Collectable> _dialogFinishedAction = null;
+    private Action<Island> _leaveIslandAction = null;
     private Collectable _currentCollectable;
     private Island _currentIsland;
     private readonly Queue<string> _currentStory = [];
@@ -31,6 +35,15 @@ public partial class CollectablesUi : Control
     public override void _Ready()
     {
         _continueButton.Pressed += AdvanceStory;
+        _leaveButton.Pressed += Leave;
+    }
+
+
+
+    private void Leave()
+    {
+        _leaveIslandAction?.Invoke(_currentIsland);
+        CloseInfo();
     }
 
 
@@ -39,7 +52,8 @@ public partial class CollectablesUi : Control
     {
         if (!_currentStory.TryDequeue(out var nextPart))
         {
-            CloseInfo();
+            _dialogFinishedAction?.Invoke(_currentIsland, _currentCollectable);
+            Leave();
             return;
         }
 
@@ -48,13 +62,17 @@ public partial class CollectablesUi : Control
 
 
 
-    public void OpenInfo(Island island, Action<Island, Collectable> dialogFinishedAction)
+    public void OpenInfo(Island island, Action<Island, Collectable> dialogFinishedAction, Action<Island> leaveAction)
     {
         _dialogFinishedAction = dialogFinishedAction;
+        _leaveIslandAction = leaveAction;
         _currentIsland = island;
+
+        _currentStory.Clear();
+
         if (island.Visited)
         {
-            _titleLabel.Text = island.Name;
+            _titleLabel.Text = "Island";
             _currentStory.Enqueue("You've already seen everything to see here.");
             _currentStory.Enqueue("There's nothing else for you.");
 
@@ -63,18 +81,28 @@ public partial class CollectablesUi : Control
         else if (CollectablesManager.Instance.Collectables.TryGetValue(island.CollectableId, out var collectable))
         {
             _titleLabel.Text = collectable.Name;
-            
-            _currentStory.Clear();
+
+            foreach (var part in CollectablesManager.Instance.GetIslandStory(island.Size).Split('%'))
+            {
+                if (!string.IsNullOrWhiteSpace(part)) _currentStory.Enqueue(part.StripEdges());
+            }
+
             foreach (var part in collectable.Story.Split('%'))
             {
-                _currentStory.Enqueue(part);
+                if (!string.IsNullOrWhiteSpace(part)) _currentStory.Enqueue(part.StripEdges());
             }
 
             GD.Print(collectable);
         }
         else
         {
-            _titleLabel.Text = island.Name;
+            _titleLabel.Text = "Island";
+
+            foreach (var part in CollectablesManager.Instance.GetIslandStory(island.Size).Split('%'))
+            {
+                if (!string.IsNullOrWhiteSpace(part)) _currentStory.Enqueue(part.StripEdges());
+            }
+
             _currentStory.Enqueue("There's nothing here");
 
             GD.Print("There's nothing here");
@@ -89,9 +117,9 @@ public partial class CollectablesUi : Control
 
     private void CloseInfo()
     {
-        _dialogFinishedAction?.Invoke(_currentIsland, _currentCollectable);
         _dialogFinishedAction = null;
         _currentCollectable = null;
+        _currentStory.Clear();
         Hide();
     }
 }

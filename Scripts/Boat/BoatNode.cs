@@ -77,7 +77,7 @@ public partial class BoatNode : Node3D
         Paused = true;
         _boatController.ResetThrottle();
 
-        _collectablesUi.OpenInfo(island, DoneIslandInteraction);
+        _collectablesUi.OpenInfo(island, DoneIslandInteraction, LeftIslandInteraction);
     }
 
 
@@ -85,11 +85,17 @@ public partial class BoatNode : Node3D
     private void DoneIslandInteraction(Island island, Collectable collectable)
     {
         island.Visited = true;
-        Paused = false;
 
         if (collectable is null) return;
 
         CollectedItems.Add(collectable.Id);
+    }
+
+
+
+    private void LeftIslandInteraction(Island island)
+    {
+        Paused = false;
     }
 
 

@@ -2,22 +2,22 @@
     {
         "Id": 0,
         "Name": "Vermilion Flower",
-        "Story": "A vermilion flower lurched over the jagged sand. It cannot outgrow its besieging captor; it can only hope to stretch skyward. "
+        "Story": "You stumble upon a patch bright flowers in the sand.%A vermilion flower lurched over the jagged sand. It cannot outgrow its besieging captor; it can only hope to stretch skyward.%You capture the flower in a jar and seal the lid tightly."
     },
     {
         "Id": 1,
         "Name": "Amber Fossil",
-        "Story": "The cave hides a mosquito trapped in an amber fossil, sealed in its golden tomb since before the age of names, for time does not release what it has chosen to keep."
+        "Story": "The wind is strong here. You hear a haunting whistle around a cliff. Your landing party is unsettled.%You discover a cave opening is the source of the noise. The inside is darker than black.%The cave hides a mosquito trapped in an amber fossil, sealed in its golden tomb since before the age of names, for time does not release what it has chosen to keep.%The amber is smooth, you slip it in your pocket."
     },
     {
         "Id": 2,
         "Name": "Aureolin Ring",
-        "Story": "A ring of aureolin gold, beautiful and warm as a dying sun, though every scholar who has written of it agrees on one thing: those who wear it near the onyx fog do not come back the same, if they come back at all."
+        "Story": "You spot a glint in the moonlight on the beach.%A ring of aureolin gold, beautiful and warm as a dying sun, though every scholar who has written of it agrees on one thing: those who wear it near the onyx fog do not come back the same, if they come back at all.%The ring fits perfectly on your finger."
     },
     {
         "Id": 3,
         "Name": "Viridian Frog",
-        "Story": "Its incandescent vertebrae segregates the viridian frog from any possible kin. What we deem beautiful quietly isolates the frog from its own home."
+        "Story": "A strange guttural noise echos across the island.%You track it down to a freshwater pond. A group of frogs hiding under black algae. One frog stands out from the rest.%Its incandescent vertebrae segregates the viridian frog from any possible kin. What we deem beautiful quietly isolates the frog from its own home.%Its new home is in a glass case in your quarters."
     },
     {
         "Id": 4,

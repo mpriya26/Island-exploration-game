@@ -1,0 +1,24 @@
+
+[
+    {
+        "MaxSize": 1000.0,
+        "Stories": [
+            ["This island is vast. In the darkness it consumes the ship."],
+            ["You watch the ship lights fade away behind trees as you climb."]
+        ]
+    },
+    {
+        "MaxSize": 200.0,
+        "Stories": [
+            ["As you approach the island, you can hear the screech of bats.", "The island rises like a wave over the horizon.", "The ship lists heavily to one side as you dodge a submerged rock."],
+            ["You jump off the boat and your boots sink into the sand.", "The stench of rotting seaweed burns your nostrils.", "You smack a mosquito drinking your blood.%It leaves a stain."]
+        ]
+    },
+    {
+        "MaxSize": 50.0,
+        "Stories": [
+            ["Barely a sandbank, why are you here?", "The skipper panics to turn before running over the island."],
+            ["There's little need to disembark, you can see the entire island from the ship."]
+        ]
+    }
+]
