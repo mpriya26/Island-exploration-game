@@ -3,8 +3,8 @@
     {
         "MaxSize": 1000.0,
         "Stories": [
-            ["This island is vast. In the darkness it consumes the ship."],
-            ["You watch the ship lights fade away behind trees as you climb."]
+            ["This island is vast. In the darkness it consumes the ship.", "More than just an island, you could spend the rest of your days here in comfort."],
+            ["You watch the ship lights fade away behind trees as you climb.", "You drop your compass.%It's not broken, if it were you'd be lost in the maze of the forest forever."]
         ]
     },
     {
@@ -15,10 +15,10 @@
         ]
     },
     {
-        "MaxSize": 50.0,
+        "MaxSize": 80.0,
         "Stories": [
             ["Barely a sandbank, why are you here?", "The skipper panics to turn before running over the island."],
-            ["There's little need to disembark, you can see the entire island from the ship."]
+            ["There's little need to disembark, you can see the entire island from the ship.", "Some of the crew scoff, \"We're here for an adventure, not rock hopping.\""]
         ]
     }
 ]
