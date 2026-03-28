@@ -75,6 +75,7 @@ public partial class BoatNode : Node3D
         }
 
         Paused = true;
+        _boatRigidBody.Freeze = true;
 
         _collectablesUi.OpenInfo(island, DoneIslandInteraction);
     }
@@ -85,6 +86,7 @@ public partial class BoatNode : Node3D
     {
         island.Visited = true;
         Paused = false;
+        _boatRigidBody.Freeze = false;
 
         if (collectable is null) return;
 

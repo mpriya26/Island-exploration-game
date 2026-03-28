@@ -4,7 +4,7 @@
 
 [sub_resource type="Gradient" id="Gradient_04hb4"]
 interpolation_mode = 2
-offsets = PackedFloat32Array(0.035714287, 0.20864661, 0.4793233, 0.65601504, 1)
+offsets = PackedFloat32Array(0.035714287, 0.3180272, 0.60714287, 0.9132653, 1)
 colors = PackedColorArray(0.74, 0.65712, 0.5032, 1, 0.4509804, 0.5058824, 0.28235295, 1, 0.23752832, 0.53, 0.12190001, 1, 0.3627, 0.39, 0.38272, 1, 1, 1, 1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_gljqa"]
@@ -53,5 +53,5 @@ shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
 shader_parameter/min_height = -1.0
-shader_parameter/max_height = 20.0
+shader_parameter/max_height = 30.0
 shader_parameter/height_albedo = SubResource("GradientTexture2D_gljqa")

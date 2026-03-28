@@ -48,8 +48,6 @@ public partial class IslandPlacer : Node3D
     [Export]
     private Material _islandMaterial;
 
-    private List<int> _remainingCollectables = [];
-
 
 
     public IReadOnlyDictionary<(int x, int y), Island> Islands => _islands;
@@ -90,7 +88,7 @@ public partial class IslandPlacer : Node3D
                     if (_rng.Randf() < _spawnChance)
                     {
                         var jitter = (x: _rng.RandfRange(0.0f, _jitter), y: _rng.RandfRange(0.0f, _jitter));
-                        var size = Mathf.Clamp(_rng.Randfn(_islandSize, 0.33f * _islandSize), 0.25f * _islandSize, _jitter * IslandSpacing);
+                        var size = Mathf.Clamp(_rng.Randfn(_islandSize, 0.3f * _islandSize), 0.1f * _islandSize, (1.0f - _jitter) * IslandSpacing);
                         _islandsToGen.Enqueue((point, new Vector3(point.x + jitter.x, 0.0f, point.y + jitter.x) * IslandSpacing, size));
                     }
                 }
@@ -114,7 +112,7 @@ public partial class IslandPlacer : Node3D
         foreach (var island in Islands.Values)
         {
             if (island is null) continue;
-            var distance = (island.Position + (0.5f * island.Size * new Vector3(1, 0, 1))).DistanceTo(_genCenter.Position);
+            var distance = island.Position.DistanceTo(_genCenter.Position);
             if (distance < island.Size + _islandInteractionDistance && distance < closestDistance)
             {
                 closestIsland = island;

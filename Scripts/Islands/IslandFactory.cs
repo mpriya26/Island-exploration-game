@@ -1,6 +1,5 @@
-using System;
+
 using Godot;
-using RandomIslandExploration.Scripts.Islands;
 using RandomIslandExploration.Scripts.Islands.Noise;
 
 
@@ -13,7 +12,9 @@ public class IslandFactory : IIslandFactory
 {
 	public MeshGeneration meshGenerator;
 
-	public RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
+	public RandomNumberGenerator randomNumberGenerator = new();
+
+
 
 	public IslandFactory()
 	{
@@ -26,7 +27,7 @@ public class IslandFactory : IIslandFactory
 			Noise = new FastNoiseLite
 			{
 				FractalType = FastNoiseLite.FractalTypeEnum.Ridged,
-				Frequency = 0.5f,
+				Frequency = 0.7f,
 			},
 			ShapeNoise = new FastNoiseLite
 			{
@@ -38,25 +39,28 @@ public class IslandFactory : IIslandFactory
 		meshGenerator.noiseSettings = perlinNoiseSettings;
 
 	}
+
+
+
 	public Island GenerateIsland(float size)
 	{
 		var noiseSettings = meshGenerator.noiseSettings as PerlinNoiseSettings;
 
-		noiseSettings.NoiseScale = randomNumberGenerator.RandfRange(1, 5);
-		noiseSettings.Height = 1.0f * randomNumberGenerator.RandfRange(1, 5);
-		noiseSettings.ShapeNoiseFactor = randomNumberGenerator.RandfRange(0.2f, 0.5f);
+		noiseSettings.NoiseScale = 0.1f * size * randomNumberGenerator.RandfRange(0.5f, 1.0f);
+		noiseSettings.Height = 0.25f * size * randomNumberGenerator.RandfRange(0.1f, 1.0f);
+		noiseSettings.ShapeNoiseFactor = randomNumberGenerator.RandfRange(0.2f, 0.4f);
 
-		noiseSettings.Noise.Seed++;
-		noiseSettings.ShapeNoise.Seed++;
+		noiseSettings.Noise.Seed = (int)randomNumberGenerator.Randi();
+		noiseSettings.ShapeNoise.Seed = (int)randomNumberGenerator.Randi();
 
 
 		meshGenerator.scale = size;
-        var newNode = new Island
-        {
-            Mesh = meshGenerator.GenMesh(),
+		var newNode = new Island
+		{
+			Mesh = meshGenerator.GenMesh(),
 			Size = size,
-        };
-        return newNode;
+		};
+		return newNode;
 	}
 
 }

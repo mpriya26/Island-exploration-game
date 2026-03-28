@@ -85,15 +85,13 @@ ToFollow = NodePath("../Boat/RigidBody3D")
 
 [node name="Boat" parent="." unique_id=14289713 node_paths=PackedStringArray("_boatController", "_collectablesUi") instance=ExtResource("1_qqgfp")]
 _boatController = NodePath("../BoatUi")
-_propThrust = 20000.0
+_propThrust = 10000.0
 _sideDrag = -500.0
 _sideMaxFactor = 5.0
 _collectablesUi = NodePath("../BoatUi/CollectablesUi")
 
 [node name="RigidBody3D" parent="Boat" index="0" unique_id=1879680047]
 inertia = Vector3(0, 500000, 0)
-linear_damp = 0.1
-angular_damp = 0.7
 
 [node name="Camera3D" parent="Boat/RigidBody3D" index="1" unique_id=568801384]
 transform = Transform3D(1, 0, 0, 0, 0.17364822, 0.9848077, 0, -0.9848077, 0.17364822, 0, 275, 0)
@@ -129,15 +127,22 @@ transform = Transform3D(-0.53582674, 0.17554565, -0.8258773, 0, 0.97814757, 0.20
 light_color = Color(0.8024331, 0.92530465, 0.99946123, 1)
 light_energy = 0.5
 
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="." unique_id=958635939]
+transform = Transform3D(0.53582674, -0.8155581, 0.21852815, 0, 0.25881904, 0.96592575, -0.8443279, -0.5175688, 0.13868217, 0, 0, 0)
+light_color = Color(0.9170127, 0.91261137, 0.80130273, 1)
+light_energy = 0.05
+light_specular = 0.0
+sky_mode = 1
+
 [node name="Islands" type="Node3D" parent="." unique_id=820543073 node_paths=PackedStringArray("_boat", "_genCenter")]
 script = ExtResource("5_mpgt8")
-_islandInteractionDistance = -30.0
-IslandSpacing = 1000.0
-_jitter = 0.6
-_islandSize = 500.0
-_genRadius = 2400.0
+_islandInteractionDistance = 100.0
+IslandSpacing = 800.0
+_jitter = 0.5
+_islandSize = 200.0
+_genRadius = 1000.0
 _centerNoGenRadius = 1
-_spawnChance = 0.2
+_spawnChance = 0.1
 _boat = NodePath("../Boat")
 _genCenter = NodePath("../Boat/RigidBody3D")
 _islandMaterial = ExtResource("6_b8h67")
