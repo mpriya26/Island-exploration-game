@@ -4,9 +4,6 @@
 [ext_resource type="Script" uid="uid://c2k5be5iv4ti2" path="res://Scripts/Islands/TestGenerateIslands.cs" id="1_fgmf3"]
 [ext_resource type="Script" uid="uid://m2buyjq50ka0" path="res://Scripts/Islands/Noise/PerlinNoiseSettings.cs" id="2_hdtfb"]
 
-[sub_resource type="Environment" id="Environment_0iamf"]
-background_mode = 3
-
 [sub_resource type="ArrayMesh" id="ArrayMesh_fgmf3"]
 _surfaces = [{
 "aabb": AABB(-100.52577, -7.3949394, -103.36918, 201.77266, 52.355873, 201.77266),
@@ -41,14 +38,13 @@ metadata/_custom_type_script = "uid://m2buyjq50ka0"
 [sub_resource type="PlaneMesh" id="PlaneMesh_fgmf3"]
 size = Vector2(1000, 1000)
 
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_fgmf3"]
+
 [node name="Island" type="Node3D" unique_id=450481716]
 script = ExtResource("1_fgmf3")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1531708439]
 transform = Transform3D(0.3840232, 0.6192761, -0.68485284, -0.3147527, 0.7851003, 0.5334307, 0.868019, 0.010709496, 0.49641553, -3.1061988, 1.1881216, 0.58593607)
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1791673138]
-environment = SubResource("Environment_0iamf")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1903477699]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.9999999, 0, 0, 0, 1, 0, 0, 0)
@@ -59,3 +55,7 @@ noiseSettings = SubResource("Resource_04hb4")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=603743456]
 mesh = SubResource("PlaneMesh_fgmf3")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="." unique_id=1659149998]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.9999999, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_fgmf3")

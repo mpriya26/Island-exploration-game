@@ -34,7 +34,7 @@ public partial class CameraFollow : Node3D
 
 
 
-    public override void _Process(double delta)
+    public override void _PhysicsProcess(double delta)
     {
         Position = Position.Lerp(_toFollow.GlobalPosition + _offset, _followSpeed);
         Rotation = new(Rotation.X, Mathf.LerpAngle(Rotation.Y, _toFollow.Rotation.Y + _rotationOffset, _rotationFollowSpeed), Rotation.Z);
