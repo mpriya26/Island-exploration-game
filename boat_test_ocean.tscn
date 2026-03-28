@@ -137,12 +137,12 @@ sky_mode = 1
 [node name="Islands" type="Node3D" parent="." unique_id=820543073 node_paths=PackedStringArray("_boat", "_genCenter")]
 script = ExtResource("5_mpgt8")
 _islandInteractionDistance = 100.0
-IslandSpacing = 800.0
+IslandSpacing = 600.0
 _jitter = 0.5
-_islandSize = 200.0
+_islandSize = 300.0
 _genRadius = 1000.0
 _centerNoGenRadius = 1
-_spawnChance = 0.1
+_spawnChance = 0.2
 _boat = NodePath("../Boat")
 _genCenter = NodePath("../Boat/RigidBody3D")
 _islandMaterial = ExtResource("6_b8h67")
@@ -150,7 +150,7 @@ _islandMaterial = ExtResource("6_b8h67")
 [node name="Collectables" type="Node" parent="." unique_id=1513526929]
 script = ExtResource("7_tfaug")
 _collectablesDataPath = "res://Data/Collectables.json"
-_collectablesRarity = 0.5
+_collectablesRarity = 0.4
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1737906732]
 environment = SubResource("Environment_tfaug")

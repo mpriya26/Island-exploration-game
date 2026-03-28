@@ -90,6 +90,11 @@ public partial class IslandPlacer : Node3D
                         var jitter = (x: _rng.RandfRange(0.0f, _jitter), y: _rng.RandfRange(0.0f, _jitter));
                         var size = Mathf.Clamp(_rng.Randfn(_islandSize, 0.3f * _islandSize), 0.1f * _islandSize, (1.0f - _jitter) * IslandSpacing);
                         _islandsToGen.Enqueue((point, new Vector3(point.x + jitter.x, 0.0f, point.y + jitter.x) * IslandSpacing, size));
+
+                        _islands.TryAdd((point.x + 0, point.y + 0), null);
+                        _islands.TryAdd((point.x + 0, point.y + 1), null);
+                        _islands.TryAdd((point.x + 1, point.y + 0), null);
+                        _islands.TryAdd((point.x + 1, point.y + 1), null);
                     }
                 }
             }

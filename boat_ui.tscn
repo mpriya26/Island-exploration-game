@@ -35,10 +35,10 @@ offset_top = -395.0
 grow_horizontal = 0
 grow_vertical = 0
 theme = ExtResource("2_kh353")
-min_value = -2.0
+min_value = -1.0
 max_value = 3.0
 rounded = true
-tick_count = 6
+tick_count = 5
 ticks_on_borders = true
 
 [node name="Wheel" type="TextureRect" parent="." unique_id=2014340382]
